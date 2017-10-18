@@ -210,6 +210,53 @@ vector2<-c(vector[order(vector, decreasing = TRUE)])
 #La diferencia con la funcion sort es que order nos devuelve las posiciones donde se debería
 #de permutar para obtener el orden deseado.
 
+
+#****************************************************************************************
+#Crea un vector x que contenga los números ordenados del 1 al 10 de
+#forma consecutiva. Investiga la función rep(). Una vez comprobado que
+#funciona, elimina las entradas repetidas del vector, para ello consulta
+#la función unique().
+#****************************************************************************************
+
+
+x<-c(1:10)
+
+help(rep)
+
+x<-rep(x,4)
+
+x<-unique(x)
+
+
+#****************************************************************************************
+#Crea un vector cualquiera. Devuelve de ese vector una muestra cinco números seleccionada
+#al azar. Usa la función sample(), prueba a determinar los valores que quieres extraer con
+#y sin remplazo.
+#****************************************************************************************
+
+x<-c(1:40)
+
+help(sample)
+
+sample(x,30)
+
+#Si queremos que salgan repetidos es decir, con reemplazo
+sample(x, 30, replace = TRUE)
+
+#Si queremos que no salgan repetidos es decir, sin reemplazo
+sample(x, 30, replace = FALSE)
+
+#****************************************************************************************
+#Comprueba que objetos tienes ahora en tu espacio de trabajo. Prueba con la función ls() y
+#la función objects()
+#****************************************************************************************
+
+help(ls)
+ls()
+
+help(objects)
+objects()
+
 #****************************************************************************************
 #****************************************************************************************
 
@@ -217,8 +264,6 @@ vector2<-c(vector[order(vector, decreasing = TRUE)])
 
 #****************************************************************************************
 #****************************************************************************************
-
-
 
 
 #R permite extraer elementos de un vector que satisfacen determinadas condiciones. 
