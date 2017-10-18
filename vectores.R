@@ -126,3 +126,107 @@ x<-seq(1,5,length.out = 9)
 #****************************************************************************************
 
 help(sequence)
+
+#La función sequence genera y concatena vectores de enteros, es decir por cada elemento de un 
+#vector que le pasemos como argumento, generara y concatenrá elementos desde el 1 hasta el valor
+#de la posicion x del vector. Por ejemplo la siguiente funcion generará valores del 1 al 5 y lo
+#concatena con valores del 1 al 8 y del 1 al 9 en un solo vector. 
+
+sequence(c(5,8,9))
+
+#sequence es menos útil a mi juicio que seq, ya que este último nos permite generar secuencias
+#que aumentan por unidades lógicas, sequence puede concatenar los resultados y seq no. 
+
+
+
+
+#****************************************************************************************
+# Crea un vector numérico utilizando la función c()
+# Accede al segundo elemento del vector
+#****************************************************************************************
+
+x<-c(1:20)
+
+x[2]
+
+#****************************************************************************************
+#Crea un vector numérico “z” que contenga del 1 al 10. Cambia el modo del vector a carácter. 
+#****************************************************************************************
+
+z<-c(1:10)
+z<-as.character(z)
+typeof(z[1])
+
+#****************************************************************************************
+# Ahora cambia el vector z a numérico de nuevo 
+#****************************************************************************************
+
+z<-as.integer(z)
+typeof(z[3])
+
+
+#****************************************************************************************
+# Busca en la ayuda que hace la función scan(). Utilízala para leer un fichero cualquiera
+# y asigna la lectura a un vector “z”. 
+#****************************************************************************************
+
+help(scan)
+
+#Hemos creado el fichero data.txt que contiene 1 2 3 4
+
+z<-scan("data.txt")
+
+z[2]
+
+#****************************************************************************************
+#Crea un vector x con 100 elementos, selecciona de ese vector una muestra al azar de tamaño 5.
+#Busca que hace la función sample().
+#****************************************************************************************
+
+x<-c(1:100)
+
+help(sample)
+
+sample(x,5)
+
+
+#****************************************************************************************
+#Genera un vector de tipo con 100 números entre el 1 y el 4 de forma random. Para ello mira
+#en la ayuda la función runif(). Obliga a que el vector resultante se ade tipo integer. Ordena
+#el vector por tamaño usando la función sort(). ¿Qué devuelve la función sort?. SI quisieras
+#invertir el orden de los elementos del vector que función utilizarías. Utiliza la función 
+#order() sobre x. ¿Cuál es la diferencia con la función sort()?
+#****************************************************************************************
+
+help(runif)
+
+vector<-sort(as.integer(runif(100,1,4)))
+
+order(vector, decreasing = TRUE)
+
+vector2<-c(vector[order(vector, decreasing = TRUE)])
+
+
+#La diferencia con la funcion sort es que order nos devuelve las posiciones donde se debería
+#de permutar para obtener el orden deseado.
+
+#****************************************************************************************
+#****************************************************************************************
+
+# 1.5 Filtrado de Vectores, subset(), which(), ifelse()
+
+#****************************************************************************************
+#****************************************************************************************
+
+
+
+
+#R permite extraer elementos de un vector que satisfacen determinadas condiciones. 
+#Es una de las operaciones mas comunes. Dado el vector z obtén los valores donde 
+#el cuadrado de z sea mayor que 8 sin utilizar ninguna función, con filtrado normal
+
+z<-c(5,2,-3,8)
+
+z[z^2>8]
+
+
