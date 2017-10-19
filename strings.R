@@ -1,0 +1,59 @@
+# R: Segunda Parte
+
+# Strings
+
+# 4.1 Strings
+
+#****************************************************************************************
+# Crea un vector de strings que contengan 3 datos: tu primer nombre y tus dos apellidos. 
+# A partir de éste crea un nuevo string con la inicial de tu nombre (y un punto) y el apellido
+# completo utilizando las utilidades de R. En mi caso debería quedar: R. Romero Zaliz.
+#****************************************************************************************
+
+vector<-c("Jose Angel", "Diaz", "Garcia")
+
+inicial<-paste(substr(vector[1],1,1),".", sep="")
+
+nombre<-paste(inicial,vector[2],vector[3], sep = " ")
+
+
+#****************************************************************************************
+# Dado un vector de fechas, expresadas como strings (e.g., “2005-11-28”), muestra solamente
+# aquellas correspondientes a los meses impares.
+#****************************************************************************************
+
+fechas<-c("1992-3-16","1991-10-30","2017-10-19","2009-5-11")
+
+fechas[grep(".-[13579]-.",fechas)]
+
+
+#****************************************************************************************
+# Dado un string con varias palabras (e.g., “Esta es una frase, pero no cualquier frase.”)
+# crea un vector con cada una de las plabras del string (["Esta","es","una","frase","pero","no","cualquier","frase"]).
+#****************************************************************************************
+
+s<-"Esta es una frase, pero no cualquier frase."
+
+vector<-strsplit(s,split ="[,. ]")[[1]]
+
+
+#****************************************************************************************
+# Busca las plabras que usan solamente las vocales “a” y “e” en un vector de strings.
+#****************************************************************************************
+
+strings<-c("Esta","es","una","frase","pero","no","cualquier","frase")
+
+grep("[ae]",strings)
+
+
+#****************************************************************************************
+# Dados tres vectores dia, mes y anno crea un vector con las fechas completas. 
+# Si la fecha es inválida,ésta se descartará (hint: investiga la función as.Date).
+#****************************************************************************************
+
+dia<-c(1:30)
+mes<-c(1:12)
+año<-c("2016","2017")
+dates<-as.Date(paste(año,mes,dia,sep = "-"))
+
+
