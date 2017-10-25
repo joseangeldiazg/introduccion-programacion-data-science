@@ -1,0 +1,72 @@
+# R: Segunda Parte
+
+# 4.3 Functions
+
+#*******************************************************************************************
+# Crea una función impares que dado un vector devuelva la cantidad de elementos impares que
+# contiene.
+#*******************************************************************************************
+
+x<-c(1,3,4,5,6,7,8,9)
+impares<-function(vector)
+{
+   sum(vector%%2==0)
+}
+
+impares(x)
+
+#*******************************************************************************************
+# Crea una función cambio que dada una matriz de numeros enteros reemplaze todos los NA por 
+# el valor 0.
+#*******************************************************************************************
+
+m<-matrix(nrow=3, ncol=3)
+m[2,3]<-2
+m[3,1]<-4
+
+cambio<-function(ma)
+{
+  ma[which(is.na(ma))] <- 0
+  ma
+}
+
+m<-cambio(m)
+
+#*******************************************************************************************
+# Crea una función unir que dados dos vectores devuelva un nuevo vector con los elementos de
+# ambos vectores sin repetidos.
+#*******************************************************************************************
+
+help(paste)
+
+x<-c(1,2,3,4,5,5,6,3,2,1,4)
+y<-c(1,3,1,5,6,8,3,4)
+
+unir<-function(vx,vy)
+{
+  repetidos<-c(vx,vy)
+  unique(repetidos)
+}
+
+sinrepetidos<-unir(x,y)
+
+
+#*******************************************************************************************
+# Crea una función vyc que dado un string devuelva una lista de dos componentes que contenga
+# las vocales y las consonantes.
+#*******************************************************************************************
+
+frase<-"esto es una frase cualquiera, para un ejercicio en r"
+
+vyc<-function(frase)
+{
+  vocales<-c("a","e","i","o","u")
+  consonantes<-setdiff(letters,vocales)
+  splitFrase<-strsplit(frase, split = "")
+  splitVocales<-intersect(vocales,splitFrase[[1]])
+  splitConsonantes<-intersect(consonantes,splitFrase[[1]])
+  salida<-list(vocales=splitVocales,consonantes=splitConsonantes)
+}
+
+salida<-vyc(string)
+

@@ -31,7 +31,8 @@ write.table(matrix(numeros*3, nrow=11, ncol=1), "./datasets/cinco.txt", row.name
 # columna, tengo el contenido de cada fichero.
 #*******************************************************************************************
 
-
 dos<-read.table("./datasets/dos.txt", header=FALSE)
 tres<-read.table("./datasets/tres.txt", header=FALSE)
 cinco<-read.table("./datasets/cinco.txt", header=FALSE)
+
+
