@@ -385,10 +385,49 @@ x[x!=NA]
 #****************************************************************************************
 # Haz la intersección de dos vectores month.name[1:4] y  month.name[3:7] usando la función intersect().
 #****************************************************************************************
+intersect(month.name[1:4],month.name[3:7])
+
+#****************************************************************************************
+#Recupera los valores idénticos entre dos vectores usando %in%. Esta función devuelve un vector lógico
+#de los elementos idénticos. Utiliza esa función para poder extraer ese subset del vector original.
+#****************************************************************************************
+
+v1<-c(1:6)
+v2<-c(3:9)
+v1[v1 %in% v2]
+
+#****************************************************************************************
+#Si x=month.name[1:4] e y= month.name[3:7] recupera los valores únicos en el primer vector. 
+#Para ello investiga la función setdiff().¿Puedes usarlo con caracteres?. Busca una alternativa.
+#****************************************************************************************
+
+x=month.name[1:4]
+y=month.name[3:7]
+
+class(x)
+class(y)
+
+setdiff(x,y)
+
+# Si que puede usarse con tipos de clase caracteres, de hecho tendremos problemas con setdiff  si pasamos 
+# argumentos de distintos tipos, pero si son iguales como es el caso no tendremos problema alguno
 
 
+#****************************************************************************************
+#Une dos vectores sin duplicar las entradas repetidas. Investiga la función unión().
+#****************************************************************************************
 
+help(union)
+x=month.name[1:4]
+y=month.name[1:7]
 
+union(x,y)
+
+#****************************************************************************************
+#Recupera las entradas duplicadas que existen entre el vector x y el vector y
+#****************************************************************************************
+
+intersect(x, y)
 
 
 
@@ -401,12 +440,27 @@ x[x!=NA]
 #****************************************************************************************
 
 
+
+
+#****************************************************************************************
 #R permite extraer elementos de un vector que satisfacen determinadas condiciones. 
 #Es una de las operaciones mas comunes. Dado el vector z obtén los valores donde 
 #el cuadrado de z sea mayor que 8 sin utilizar ninguna función, con filtrado normal
+#****************************************************************************************
 
 z<-c(5,2,-3,8)
 
 z[z^2>8]
+
+
+#****************************************************************************************
+# R permite extraer elementos de un vector que satisfacen determinadas condiciones usando la
+# función subset(), la diferencia entre esta función y el filtrado normal es como funciona con
+# NA, subset(9 los elimina automáticamente del cálculo. Para el vector x <- c(6,1:3,NA,12) 
+# calcula los elementos mayores que 5 usando primero el filtrado normal
+# y luego la función subset()
+#****************************************************************************************
+
+                                                                                                                                                                                                                                                                                                                                                                            
 
 
