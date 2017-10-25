@@ -329,6 +329,66 @@ match(c("c","g"), letters)
 
 #Nos devuelve las posiciones en las que encuentra las letras que le pasamos en el primer argumento. 
 
+#****************************************************************************************
+# Crea un vector x de elementos -5 -1, 0, 1, . . . , 6. Escribe un código en R del tipo x[ 'something' ]
+# , para extraer
+#****************************************************************************************
+
+x<-(-5:6)
+
+#elementos de x menores que  0
+
+x[x<0]
+
+#elementos de x menores o igual que 0
+
+x[x<=0]
+
+#elementos of x mayor o igual que 3
+
+x[x>=3]
+
+#elementos de x menor que 0 o mayor que  4
+
+x[x<0|x>4]
+
+#elementos de x mayor que 0 y menor que 4
+
+x[x>0&x<4]
+
+#elementos de x distintos de 0
+
+x[x!=0]
+
+#****************************************************************************************
+# El código is.na se usa para identificar valores ausentes (NA). Crea el vector x<- c(1,2,NA)
+# y averigua que pasa cuando escribes is.na(x). Prueba con x[ x!=NA ] ¿obtienes con este comando
+# los missing values de x?. ¿cuál es tu explicación?
+#****************************************************************************************
+
+x<- c(1,2,NA)
+is.na(x)
+
+x[x!=NA]
+
+# De este modo no se obtienen los valores perdidos si no que nos ofrece todos los valores como si fueran na
+# Creo que se debe a que los tipos de un vector son los mismos y por lo tanto al crear un vector de enteros
+# el na está cambiando su tipo lógico por defecto a entero y la evaluacion del mismo no es correcta. 
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 1.4 Búsqueda de valores idénticos y distintos en Vectores
+#****************************************************************************************
+#****************************************************************************************
+
+#****************************************************************************************
+# Haz la intersección de dos vectores month.name[1:4] y  month.name[3:7] usando la función intersect().
+#****************************************************************************************
+
+
+
+
 
 
 
