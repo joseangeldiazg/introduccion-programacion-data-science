@@ -70,3 +70,15 @@ vyc<-function(frase)
 
 salida<-vyc(string)
 
+#*******************************************************************************************
+# Crea una función partir que dado un vector v y dos valores x e y (siendo y opcional), retorne un 
+# vector con los valores que aparecen luego del primer x y hasta el primer y. De no indicarse el valor
+# de y se devolveran todos los valores que aparecen luego del primer x hasta el final del vector.
+#*******************************************************************************************
+
+partir<-function(vec,x,y=length(vec))
+{
+  vec[x:y]
+}
+
+partir(c(1,2,3,4,5,6,7),3)
