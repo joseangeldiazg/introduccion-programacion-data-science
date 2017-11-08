@@ -462,5 +462,44 @@ z[z^2>8]
 #****************************************************************************************
 
                                                                                                                                                                                                                                                                                                                                                                             
+x <- c(6,1:3,NA,12)
+
+x[x>5]
+
+subset(x, x>5)
 
 
+#****************************************************************************************
+# R permite extraer encontrar las posiciones en las que se encuentran los elementos que 
+# cumplen una determinada condición con which(). Utiliza esta función para encontrar dado
+# el vector z, las posiciones donde el cuadrado de z sea mayor que 8
+#****************************************************************************************
+
+
+z <- c(5,2,-3,8)
+
+help(which)
+
+which(z^2>8)
+
+#****************************************************************************************
+# En R aparte de encontrarse los típicos bucles if-then-else existe la función ifelse(). 
+# Ifelse funciona de la siguiente manera (ver ejemplo). Para un vector x devuelve 5 para
+# aquellos números que sean pares (módulo igual a 0) y 12 para los números impares.
+#****************************************************************************************
+
+vector<-c(1:30)
+
+help(ifelse)
+
+ifelse(vector%%2==0, print("5"), print("12"))
+
+#****************************************************************************************
+# Práctica ahora para el vector x <- c(5,2,9,12)devuelve el doble de x si el valor de x es mayor
+# que 6 y el triple si no lo es.
+#****************************************************************************************
+
+
+x <- c(5,2,9,12)
+
+ifelse(x>6, x*2, x*3)
