@@ -263,4 +263,71 @@ mean(star_wars_matrix[,1]/5)
 mean(star_wars_matrix[,2]/5)
 
 
+
+
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 2.2 Subsetting matrices y arrays 
+#****************************************************************************************
+#****************************************************************************************
+
+
+
+#****************************************************************************************
+# Crea un array i <- array(c(1:10),dim=c(5,2)). ¿Que información te dan los siguientes comandos?
+#****************************************************************************************
+
+i <- array(c(1:10),dim=c(5,2))
   
+  
+dim(i)
+
+#Nos dice el número de filas y columnas
+
+nrow(i) 
+
+#Nos dice el número de filas
+
+ncol(i) 
+
+#Nos dice el número de columnas
+
+
+#****************************************************************************************
+# Crea un array de dimensiones 5 filas y dos columnas y rellénalo con valores del 1-5 y del 5 al 1
+#****************************************************************************************
+
+x <- array(c(c(1:5),c(5:1)), dim = c(5,2))
+
+#****************************************************************************************
+# ¿Qué hace el comando x[i] ¿. Comprueba que tienes en x antes 
+#****************************************************************************************
+x
+
+#Devuelve el elemento i del array pero lo hace por columnas
+
+x[6]
+
+#****************************************************************************************
+# ¿y el comando x[i] <- 0?
+#****************************************************************************************
+ 
+#Este comando asigna el valor que pasamos a la derecha de <-, en este caso 0, al elemento i del array
+
+
+#****************************************************************************************
+# Descárgate el fichero array_datos.txt de PRADO (Datos/) e impórtalo en tu work space de R 
+# teniendo en cuenta que es un texto tabulado. Después crea un documento con los mismos datos 
+# pero en formato csv en vez de tab separated.
+#****************************************************************************************
+
+
+
+array_datos<-read.table("./datasets/array_datos.txt")
+
+help("write.csv")
+
+write.csv(array_datos, file="array_datos2.csv")
+
