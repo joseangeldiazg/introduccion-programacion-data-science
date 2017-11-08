@@ -426,3 +426,208 @@ x <- factor(c("high", "low", "medium", "high", "high", "low", "medium"), levels=
 unique(x)
 
 
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 2.4 Acceso y selección de secciones de un  data frames 
+#****************************************************************************************
+#****************************************************************************************
+
+
+#****************************************************************************************
+# Vamos a trabajar con un ejemplo que viene por defecto en la instalación de R USArrests. 
+# Este data frame contiene la información para cada estado Americano de las tasas de criminales
+# (por 100.000 habitantes). Los datos de las columnas se refieren a Asesinatos, violaciones y
+# porcentaje de la población que vive en áreas urbanas. Los datos son de 1973. Contesta a las
+# siguientes preguntas sobre los datos
+#****************************************************************************************
+
+USArrests
+
+#****************************************************************************************
+# -Las dimensiones del dataframe 
+# -La longitud del dataframe (filas o columnas) 
+# -Numero  de columnas 
+#****************************************************************************************
+
+dim.data.frame(USArrests) # 50 * 4
+nrow(USArrests) # 50
+ncol(USArrests) # 4
+
+
+#****************************************************************************************
+# ¿Cómo calcularías el número de filas?
+#****************************************************************************************
+
+nrow(USArrests)  
+
+#****************************************************************************************
+# Obtén el nombre de las filas y las columnas para este data frame
+#****************************************************************************************
+
+row.names(USArrests)
+colnames(USArrests)
+
+#****************************************************************************************
+# Échale un vistazo a los datos, por ejemplo a las seis primeras filas
+#****************************************************************************************
+
+head(USArrests, 6)
+
+#****************************************************************************************
+# Ordena de forma decreciente las filas de nuestro data frame según el porcentaje de población
+# en el área urbana. Para ello investiga la función order () y sus parámetros.
+#****************************************************************************************
+
+USArrests[order(USArrests$UrbanPop, decreasing = TRUE),]
+
+#****************************************************************************************
+# ¿Podrías añadir un segundo criterio de orden?, ¿cómo?
+#****************************************************************************************
+
+USArrests[order(c(USArrests$UrbanPop,USArrests$Assault), decreasing = TRUE),]  
+
+#****************************************************************************************
+# Muestra por pantalla la columna con los datos de asesinato
+#****************************************************************************************
+
+USArrests$Murder
+
+#****************************************************************************************
+# Muestra las tasas de asesinato para el segundo, tercer y cuarto estado 
+#****************************************************************************************
+
+USArrests$Murder[2:4]
+
+#****************************************************************************************
+# Muestra las primeras cinco filas de todas las columnas
+#****************************************************************************************
+
+USArrests[1:5,]
+
+
+#****************************************************************************************
+# Muestra todas las filas para las dos primeras columnas
+#****************************************************************************************
+
+USArrests[,1:2]
+
+#****************************************************************************************
+# Muestra todas las filas de las columnas 1 y 3
+#****************************************************************************************
+
+USArrests[,1:2]
+
+#****************************************************************************************
+# Muestra solo las primeras cinco filas de las columnas 1 y 2
+#****************************************************************************************
+
+
+USArrests[1:5,1:2]
+
+#****************************************************************************************
+# Extrae las filas para el índice Murder
+#****************************************************************************************
+
+USArrests$Murder
+
+#****************************************************************************************
+# ¿Que estado tiene la menor tasa de asesinatos? ¿qué línea contiene esa información?, 
+# obtén esa informaciónn
+#****************************************************************************************
+
+minorMurder = USArrests[order(USArrests$Murder, decreasing = TRUE),]
+minorMurder[nrow(minorMurder),]
+
+#****************************************************************************************
+# ¿Que estados tienen una tasa inferior al 4%?, obtén esa información
+#****************************************************************************************
+
+minorMurder[minorMurder$Murder<4,]
+
+#****************************************************************************************
+# ¿Que estados estan en el cuartil superior (75) en lo que a poblacion en zonas urbanas se refiere? 
+#****************************************************************************************
+  
+rownames(USArrests[USArrests[,"UrbanPop"]>quantile(USArrests[,"UrbanPop"],.75),])
+
+
+
+#****************************************************************************************
+# Vamos a trabajar con otro dataframe. Descarga el fichero student.txt de la plataforma PRADO,
+# almacena la información en una variable llamada “students”. Ten en cuenta que los datos son
+# tab-delimited y tienen un texto para cada columna. Comprueba que R ha leído correctamente el
+# fichero imprimiendo el objeto en la pantalla
+#****************************************************************************************
+
+students<-read.table("./datasets/student.txt", header = TRUE)
+students
+
+#****************************************************************************************
+# Imprime solo los nombres de la columnas
+#****************************************************************************************
+
+colnames(students)
+
+#****************************************************************************************
+#Llama a la columna height solo
+#****************************************************************************************
+
+students$height
+
+#****************************************************************************************
+# ¿Cuantas observaciones hay en cada grupo?. Utiliza la función table().  Este commando se puede
+# utilizar para crear tablas cruzadas (cross-tabulations)
+#****************************************************************************************
+
+table(students)
+
+#****************************************************************************************
+# Crea nuevas variables a partir de los datos que tenemos. Vamos a crear una variable nueva
+# “sym” que contenga M si el genero es masculino y F si el genero es femenino. Busca en la 
+# ayuda información sobre la función ifelse(). Crea una segunda variable “colours” cuyo valor
+# será “Blue” si el estudiante es de kuopio y “Red” si es de otro sitio.
+#****************************************************************************************
+
+sym<-ifelse(students$gender=="male", "M", "F")
+colours<-ifelse(students$population=="kuopio", "Blue", "Red")
+
+#****************************************************************************************
+#Con los datos anteriores de height y shoesize y las nuevas variables crea un nuevo data.frame 
+#que se llame students.new
+#****************************************************************************************
+
+students.new<-cbind(students,sym, colours)
+
+#****************************************************************************************
+#Comprueba que la clase de student.new es un dataframe
+#****************************************************************************************
+
+str(students.new)
+
+#****************************************************************************************
+# Crea dos subsets a partir del dataset student. Dividelo dependiendo del sexo. Para ello 
+# primero comprueba que estudiantes son hombres (male). Pista: busca información sobre la función which.
+#****************************************************************************************
+
+
+#****************************************************************************************
+# Basándote en esa selección dada por which() toma solo esas filas del dataset student para generar
+# el subset stundent.male
+#****************************************************************************************
+
+students.male = students.new[which(students.new$sym=="M"),]
+
+#****************************************************************************************
+#Repite el procedimiento para seleccionar las estudiantes mujeres (females)
+#****************************************************************************************
+
+students.female = students.new[which(students.new$sym=="F"),]
+
+
+#****************************************************************************************
+#Utiliza la function write.table() para guarder el contenido de student.new en un archivo.
+#****************************************************************************************
+
+write.table(students.new, "./datasets/studentsnew.txt", col.names = TRUE)
