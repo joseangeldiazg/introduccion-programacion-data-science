@@ -164,6 +164,103 @@ x1 <- x
 
 
 
+#****************************************************************************************
+# Accede al dataset “women”. 
+#
+# -Primero confirma que los datos están ordenados de forma creciente según la altura (height) 
+#  y el peso (weight) sin mirar los datos.
+#
+# -Crea una nueva variable “bmi”. Este valor responde a la siguiente fórmula: 
+#  BMI = ( Weight in Pounds / (Height in inches) x (Height in inches) ) x 703
+#
+# -Ordena el dataframe por el valor de bmi y por orden alfabético de la variable name
+#****************************************************************************************
+
+
+str(women)
+
+is.unsorted(women$height)
+is.unsorted(women$weight)
+
+women$bmi<-(women$weight/women$height^2)*703
+
+order(women$bmi)
+
+
+
+#****************************************************************************************
+# Crea los siguientes vectores:
+#  Box office Star Wars: In Millions (!)  First element: US, Second element:Non-US
+# new_hope = c(460.998007, 314.4)
+# empire_strikes = c(290.475067, 247.9)
+# return_jedi = c(309.306177, 165.8)
+#****************************************************************************************
+
+new_hope = c(460.998007, 314.4)
+empire_strikes = c(290.475067, 247.9)
+return_jedi = c(309.306177, 165.8)
+
+#****************************************************************************************
+# Construye la matriz star_wars_matrix con  esos vectores
+#****************************************************************************************
+
+star_wars_matrix<-rbind(new_hope,empire_strikes,return_jedi )
+
+
+
+#****************************************************************************************
+# Añádele nombres a las columnas y filas de la matriz según las descripciones dadas anteriormente de los datos
+#****************************************************************************************
+
+colnames(star_wars_matrix)<-c("US","Non-US")
+
+#****************************************************************************************
+#Calcula las ganacias  mundiales de cada película y  guardalas en un vector que se llame worldwide_vector.
+#****************************************************************************************
+
+worldwide_vector<-rowSums(star_wars_matrix)
+
+#****************************************************************************************
+# Añade éste ultimo vector como una columna nueva a la matriz star_wars_matrix y asigna el resultado a all_wars_matrix. Usa para ello la función cbind().
+#****************************************************************************************
+
+
+all_wars_matrix<-cbind(star_wars_matrix,worldwide_vector)
+
+#****************************************************************************************
+# Calcula las ganancias totals en USA y fuera de USA para las tres películas. Puedes usar para ello la función colSums() 
+#****************************************************************************************
+
+colSums(all_wars_matrix[,1:2])
+
+#****************************************************************************************
+# Calcula la media de ganancias para todas las películas fuera de los estados unidos. Asigna esa media la variable non_us_all.
+#****************************************************************************************
+
+non_us_all<-mean(all_wars_matrix[,2])
+
+#****************************************************************************************
+# Haz lo mismo pero solo para las dos primeras películas . Asigna el resultado a la variable non_us_some.
+#****************************************************************************************
+
+non_us_some<-mean(all_wars_matrix[1:2,2])
+
+
+#****************************************************************************************
+# Calcula cuantos visitantes hubo para cada película en cada área geográfica. Ya tienes las ganancias
+# totales en star_wars_matrix. Asume que el precio de las entradas es de cinco euros/dólares 
+# (Nota: el numero total de visitantes para cada pelicula dividido por el precio del ticket 
+#  te da el numero de visitantes)
+#****************************************************************************************
+
+star_wars_matrix/5
+
+#****************************************************************************************
+# Calcula la media de visitantes en territorio USA y en territorio noUS
+#****************************************************************************************
+
+mean(star_wars_matrix[,1]/5)
+mean(star_wars_matrix[,2]/5)
 
 
   
