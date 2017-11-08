@@ -162,10 +162,11 @@ df <- as.data.frame(matrix(sample(1:5, 2000, T), ncol=40))
 #****************************************************************************************
 
 
-
-
-
-
+CO2
+CO2$Plant #is unsorted
+co_2ordered <- CO2[order(CO2$Plant),]
+co_2ordered
+is.unsorted(co_2ordered$Plant)
 
 
 #****************************************************************************************
@@ -173,7 +174,6 @@ df <- as.data.frame(matrix(sample(1:5, 2000, T), ncol=40))
 # 3.2 Importando información
 #****************************************************************************************
 #****************************************************************************************
-
 
 
 
@@ -254,4 +254,89 @@ students.female = students.new[which(students.new$sym=="F"),]
 #****************************************************************************************
 
 write.table(students.new, "./datasets/studentsnew.txt", col.names = TRUE)
+
+
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 3.3 Lists
+#****************************************************************************************
+#****************************************************************************************
+
+
+#****************************************************************************************
+# Ejemplo de cómo crear una lista. Ejecuta los comandos y describe que es lo que ocurre
+#****************************************************************************************
+
+my_list <- list(name="Fred", wife="Mary", nochildren=3, child.ages=c(4,7,9)) 
+
+#Crea una lista con ciertos atributos y valores
+
+attributes(my_list)
+
+#Muestra los atributos, (nombre de las variables) de nuestra lista
+
+names(my_list) 
+
+#Similar a lo anteior pero de otro modo
+
+my_list[2]
+
+#Muestra el contenido del segundo campo de la lista y el nombre del mismo
+
+my_list[[2]]
+
+#Muestra el contenido del segundo campo de la lista
+
+my_list$wife
+
+#Muestra el contenido del  campo etiquetado como wife
+
+my_list[[4]][2] 
+
+#El Campo child.ages en la lista tiene 3 elementos, muestra el segundo.  
+
+length(my_list[[4]]) 
+
+#Número de elementos que hay en el campo 4 de la lista
+
+my_list$wife <- 1:12 
+
+#Asigna a wife valores del 1 al 12
+
+my_list$wife <- NULL
+
+#Asigna a wife valor NULL
+
+my_list <- c(my_list, list(my_title2=month.name[1:12]))
+
+#Crea una lista con los nombres de los meses
+
+unlist(my_list)
+
+#Crea un dataframe con los valores resultantes
+data.frame(unlist(my_list))
+
+#Crea una matriz con los valores resultantes
+matrix(unlist(my_list))
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 3.4 Table ()
+#****************************************************************************************
+#****************************************************************************************
+
+
+
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 3.5 Como ordenar datos, hacer selecciones con if(), calcular condicionales totales, transponer
+# columnas y filas
+#****************************************************************************************
+#****************************************************************************************
+
 
