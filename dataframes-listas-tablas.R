@@ -328,9 +328,11 @@ matrix(unlist(my_list))
 #****************************************************************************************
 #****************************************************************************************
 
+#La función  table() cuenta el número de elementos repetidos en un vector. Es la función más básica de clustering.
 
+#Cuenta el número de entradas idénticas en la variable  Sepal.Length del dataset iris.
 
-
+table(iris$Sepal.Length)
 
 #****************************************************************************************
 #****************************************************************************************
@@ -340,3 +342,53 @@ matrix(unlist(my_list))
 #****************************************************************************************
 
 
+#****************************************************************************************
+# Vamos a volver a utilizar el datasets mtcars. 
+# Ordena este data set de forma ascendente según su valo de hp. PISTA: with()
+#****************************************************************************************
+
+mtcars[order(mtcars$hp),]
+
+#****************************************************************************************
+# Hazlo ahora de forma descendente
+#****************************************************************************************
+
+mtcars[order(mtcars$hp, decreasing = TRUE),]
+
+#****************************************************************************************
+# Calcula la media de la columna mpg. 
+#****************************************************************************************
+
+mean(mtcars$mpg)
+
+#****************************************************************************************
+# Calcula la media de mpg para aquellos datos cuyo valor de hp sea menor que 150 y por
+# separado para aquellos cuyo valor de hp sea mayor o igual a 150
+#****************************************************************************************
+
+mean(mtcars)
+
+mean(mtcars[mtcars$hp<150,]$mpg)
+mean(mtcars[mtcars$hp>150,]$mpg)
+
+
+#****************************************************************************************
+# Busca los valores únicos de la columna cyl de mtcars. PISTA unique()
+#****************************************************************************************
+
+unique(mtcars$cyl)
+
+#****************************************************************************************
+# Obten los datos de mpg cyl disp hp para “Toyota Corolla"
+#****************************************************************************************
+
+mtcars["Toyota Corolla",c("mpg","cyl","disp","hp")]
+
+#****************************************************************************************
+# Crea una nueva variable mpgClass de tipo categórico cuyo valor es “Low“ si el valor de mpg 
+# es menor que la media de la columna mpg y “High” si es mayor que la media de mpg. 
+# PISTA ifelse(). Combina ese comando con with() para añadir la nueva variable a mtcars
+# ¿qué pasa cuando ejecutas este comando? 
+#****************************************************************************************
+
+mtcars$mpgClass<-ifelse(mtcars$mpg<(mean(mtcars$mpg)),"Low", "High")
