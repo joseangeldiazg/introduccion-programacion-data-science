@@ -331,3 +331,98 @@ help("write.csv")
 
 write.csv(array_datos, file="array_datos2.csv")
 
+
+
+
+#****************************************************************************************
+#****************************************************************************************
+# 2.3 Factors 
+#****************************************************************************************
+#****************************************************************************************
+
+
+#****************************************************************************************
+#Dado x = c(1, 2, 3, 3, 5, 3, 2, 4, NA), ¿cuáles son los levels de factor(x)?
+#  1, 2, 3, 4, 5
+#  NA
+#  1, 2, 3, 4, 5, NA
+#****************************************************************************************
+
+x = c(1, 2, 3, 3, 5, 3, 2, 4, NA) 
+
+factor(x)
+
+#Respeuesta A. Los NA no se tiene como posibles valores del factor. 
+
+#****************************************************************************************
+# Dado x <- c(11, 22, 47, 47, 11, 47, 11) y la ejecución de la sentencia 
+# factor(x, levels=c(11, 22, 47), ordered=TRUE)¿cuál es el cuarto elemento de la salida? 
+#  11
+#  22
+#  47
+#****************************************************************************************
+
+x <- c(11, 22, 47, 47, 11, 47, 11)
+factor(x, levels=c(11, 22, 47), ordered=TRUE)
+
+#No hay cuarto elemento, ya que solo tenemos tres posibles valores para el factor
+
+#****************************************************************************************
+# Para el factor z <- c("p", "a" , "g", "t", "b"), reemplaza el tercer elemento de z por "b".
+#   a.factor(z[3]) <- "b" 
+#   levels(z[3]) <- "b" 
+#   z[3] <- "b"
+#****************************************************************************************
+
+z[3] <- "b"
+
+#****************************************************************************************
+#Dado z <- factor(c("p", "q", "p", "r", "q")) escribe una expresión de R que cambie el level  "p" a "w" 
+#****************************************************************************************
+
+z <- factor(c("p", "q", "p", "r", "q"))
+levels(z)[1] <- "w"
+z
+
+
+#****************************************************************************************
+# Usa el dataset “iris” 
+# Escribe la expresión necesaria para convertir la variable “Sepal.Length”  en un factor
+# con cinco niveles (levels) . Pista( mira la función table() y la función cut().
+#****************************************************************************************
+
+irisfactor <- factor(table(cut(iris$Sepal.Length, b=5)))
+
+
+
+
+#****************************************************************************************
+#  El factor responses se define como:
+# 
+#  responses <- factor(c("Agree", "Agree", "Strongly Agree", "Disagree", "Agree")), 
+#  sin embargo nos damos cuenta que tiene un nuevo nivel, "Strongly Disagree", que no estaba 
+#  presente cuando se creó. Añade el nuevo nivel al factor y conviértelo en un factor ordenado 
+#  de la siguiente forma:
+#  
+#  Levels: Strongly Agree < Agree < Disagree < Strongly Disagree
+#
+#****************************************************************************************
+  
+levels(responses) = c(levels(responses), "Strongly disagree")
+responses = factor(responses, levels(responses)[c(3,1:2,4)], ordered = TRUE)
+
+#****************************************************************************************
+# Dado el factor: 
+#  x <- factor(c("high", "low", "medium", "high", "high", "low", "medium"))
+#  Escribe la expresión en R que permita dar valores numéricos únicos para los distintos 
+#  niveles (levels) de x según el siguiente esquema: 
+#  
+#    level high   => value 1 level low    => value 2 level medium => value 3
+#
+# Pista: investiga la función unique() y los parámetros de data.frame()
+#****************************************************************************************
+
+x <- factor(c("high", "low", "medium", "high", "high", "low", "medium"), levels=c("high","low","medium"),labels=c(1,2,3))
+unique(x)
+
+
