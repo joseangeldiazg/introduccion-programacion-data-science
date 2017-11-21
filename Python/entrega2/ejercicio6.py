@@ -12,7 +12,7 @@ print("Matriz normal")
 printmatriz(mat)
 
 def traspuesta(matriz):
-    tras=list(matriz)
+    tras = [[0 for columna in range(len(matriz))] for row in range(len(matriz[0]))]
     for i in range(len(matriz)):
         for j in range(len(matriz[i])):
             tras[j][i]=matriz[i][j]
