@@ -1,0 +1,10 @@
+name: "Programación para Ciencia de Datos con R"
+navbar:
+  title: "Programación para Ciencia de Datos con R"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Vectores"
+      href: vectores.html
+    - text: "Matrices"
+      href: matrices.html
