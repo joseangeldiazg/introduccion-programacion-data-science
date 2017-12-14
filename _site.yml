@@ -1,0 +1,22 @@
+name: "Programación para Ciencia de Datos con R"
+output_dir: "docs"
+exclude: ["introduccion-programacion-data-science.Rproj","datsets","Python","README.md", "LICENSE", ".*"]
+navbar:
+  title: "Programación para Ciencia de Datos con R"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Vectores"
+      href: vectores.html
+    - text: "Matrices"
+      href: matrices.html
+    - text: "Dataframes"
+      href: dataframes.html
+    - text: "Strings"
+      href: strings.html
+    - text: "Input Output"
+      href: inputoutput.html
+    - text: "Functions"
+      href: functions.html
+    - text: "Program Structures"
+      href: progama.html

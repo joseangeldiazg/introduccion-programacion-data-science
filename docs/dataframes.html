@@ -12,7 +12,7 @@
 <meta name="author" content="joseangeldiazg" />
 
 
-<title>Introducción a R II</title>
+<title>Introducción a R III</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -214,438 +214,25 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Introducción a R II</h1>
+<h1 class="title toc-ignore">Introducción a R III</h1>
 <h4 class="author"><em>joseangeldiazg</em></h4>
-<h4 class="date"><em>13/12/2017</em></h4>
+<h4 class="date"><em>14/12/2017</em></h4>
 
 </div>
 
 
-<div id="matrices-factores-y-dataframes" class="section level1">
-<h1>Matrices, factores y dataframes</h1>
-<div id="matrices" class="section level2">
-<h2>2.1 Matrices</h2>
-<ul>
-<li>Ejecuta los siguientes comandos.</li>
-</ul>
-<pre class="r"><code>matrix(data=5, nr=2, nc=2)</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    5    5
-## [2,]    5    5</code></pre>
-<pre class="r"><code>matrix(1:6, 2, 3)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    3    5
-## [2,]    2    4    6</code></pre>
-<pre class="r"><code>matrix(1:6, 2, 3, byrow=TRUE)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    2    3
-## [2,]    4    5    6</code></pre>
-<ul>
-<li>Crea un vector z con los 30 primeros números y crea con el una matriz m con 3 filas y 10 columnas.</li>
-</ul>
-<pre class="r"><code>z&lt;-c(1:30)
+<div id="dataframes-listas-tablas-acceso-a-datos-y-condicionales" class="section level1">
+<h1>Dataframes, listas, tablas, acceso a datos y condicionales</h1>
+<div id="dataframes" class="section level2">
+<h2>3.1 Dataframes</h2>
+<p>Busca los datasets “beaver1” y “beaver2” que contienen información sobre la temperatura corporal de dos castores. Añade una columna llamada “ID” al dataset beaver1 que tenga siempre el valor 1. De forma similar añade una columna “ID” al dataset beaver2 que tenga siempre el valor 2. A continuación concatena de forma vertical los dos dataframes y busca el subset de datos donde ambos Castores están activos.</p>
+<pre class="r"><code>x&lt;-cbind(beaver1,&quot;ID&quot;=1)
 
-m&lt;-matrix(data=z, nr=3, nc=10, byrow = TRUE)</code></pre>
-<ul>
-<li>Escribe la tercera columna en un vector</li>
-</ul>
-<pre class="r"><code>z&lt;-m[,3]</code></pre>
-<p>*Create in R the matrices</p>
-<p>x =3 21 −1 1</p>
-<p>y =1 4 0 0 1 -1</p>
-<pre class="r"><code>x&lt;-c(3,21,-1,1)
-xmatrix&lt;-matrix(data=x,ncol = 2, nrow = 2, byrow = TRUE)
-xmatrix</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    3   21
-## [2,]   -1    1</code></pre>
-<pre class="r"><code>y&lt;-c(1,4,0,0,1,-1)
-ymatrix&lt;-matrix(data=y, ncol=3, nrow=2, byrow = TRUE)
-ymatrix</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    4    0
-## [2,]    0    1   -1</code></pre>
-<ul>
-<li>Y calcula los efectos de los siguientes comandos</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li><ol style="list-style-type: lower-alpha">
-<li>x[1,]</li>
-</ol></li>
-<li><ol start="2" style="list-style-type: lower-alpha">
-<li>x[2,]</li>
-</ol></li>
-<li><ol start="3" style="list-style-type: lower-alpha">
-<li>x[,2]</li>
-</ol></li>
-<li><ol start="4" style="list-style-type: lower-alpha">
-<li>y[1,2]</li>
-</ol></li>
-<li><ol start="5" style="list-style-type: lower-alpha">
-<li>y[,2:3]</li>
-</ol></li>
-</ol>
-<pre class="r"><code>xmatrix[1,]</code></pre>
-<pre><code>## [1]  3 21</code></pre>
-<pre class="r"><code>xmatrix[2,]</code></pre>
-<pre><code>## [1] -1  1</code></pre>
-<pre class="r"><code>xmatrix[,2]</code></pre>
-<pre><code>## [1] 21  1</code></pre>
-<pre class="r"><code>ymatrix[1,2]</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>ymatrix[,2:3]</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    4    0
-## [2,]    1   -1</code></pre>
-<ul>
-<li>Transforma la matriz m que creaste en el ejercicio anterior en un array multidimensional.</li>
-</ul>
-<pre class="r"><code>z&lt;-c(1:30)
-m&lt;-matrix(data=z, nr=3, nc=10, byrow = TRUE)
-
-marray = array(m, dim=c(dim(m),2))
-marray</code></pre>
-<pre><code>## , , 1
-## 
-##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-## [1,]    1    2    3    4    5    6    7    8    9    10
-## [2,]   11   12   13   14   15   16   17   18   19    20
-## [3,]   21   22   23   24   25   26   27   28   29    30
-## 
-## , , 2
-## 
-##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-## [1,]    1    2    3    4    5    6    7    8    9    10
-## [2,]   11   12   13   14   15   16   17   18   19    20
-## [3,]   21   22   23   24   25   26   27   28   29    30</code></pre>
-<ul>
-<li>Crea un array de 5 x 5 y rellénalo con valores del 1 al 25. Investiga la función array(). Llama al array x</li>
-</ul>
-<pre class="r"><code>x&lt;-array(1:25, dim=c(5,5,1))
-x</code></pre>
-<pre><code>## , , 1
-## 
-##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    1    6   11   16   21
-## [2,]    2    7   12   17   22
-## [3,]    3    8   13   18   23
-## [4,]    4    9   14   19   24
-## [5,]    5   10   15   20   25</code></pre>
-<ul>
-<li>Escribe el array x en un vector y</li>
-</ul>
-<pre class="r"><code>y&lt;-x[1:25]</code></pre>
-<ul>
-<li>Dadas las matrices m1 y m2 usa rbind() y cbind() para crear matrices nuevas utilizando estas funciones, llamalas M1 y M2. ¿En que se diferencian las matrices creadas?</li>
-</ul>
-<pre class="r"><code>m1 &lt;- matrix(1, nr = 2, nc = 2)
-m2 &lt;- matrix(2, nr = 2, nc = 2)
-M1 &lt;-cbind(m1, m2)
-M2 &lt;-rbind(m1, m2)
-M1</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    1    2    2
-## [2,]    1    1    2    2</code></pre>
-<pre class="r"><code>M2</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    1    1
-## [2,]    1    1
-## [3,]    2    2
-## [4,]    2    2</code></pre>
-<p>La diferencia está en que cbind une por las columnas y rbind une por filas</p>
-<ul>
-<li>El operador para el producto de dos matrices es ‘%* %’. Por ejemplo, considerando las dos matrices creadas en el ejercicio anterior utilízalo.</li>
-</ul>
-<pre class="r"><code>M1%*%M2</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]   10   10
-## [2,]   10   10</code></pre>
-<ul>
-<li>Usa la matriz M1 del ejercicio anterior y aplica la función t(). ¿qué hace esa función?</li>
-</ul>
-<pre class="r"><code>help(t)
-t(M1)</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    1    1
-## [2,]    1    1
-## [3,]    2    2
-## [4,]    2    2</code></pre>
-<p>La función T nos ofrece la matriz o el dataframe traspuesto del que le pasemos como argumento</p>
-<ul>
-<li>Ejecuta los siguientes comandos basados en la función diag() sobre las matrices creadas anteriormente m1 y m2. ¿Qué tipo de acciones puedes ejecutar con ella?</li>
-</ul>
-<pre class="r"><code>diag(m1)</code></pre>
-<pre><code>## [1] 1 1</code></pre>
-<pre class="r"><code>diag(rbind(m1, m2) %*% cbind(m1, m2))</code></pre>
-<pre><code>## [1] 2 2 8 8</code></pre>
-<pre class="r"><code>diag(m1) &lt;- 10
-
-diag(3)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    0    0
-## [2,]    0    1    0
-## [3,]    0    0    1</code></pre>
-<pre class="r"><code>v &lt;- c(10, 20, 30)
-
-diag(v)</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]   10    0    0
-## [2,]    0   20    0
-## [3,]    0    0   30</code></pre>
-<pre class="r"><code>diag(2.1, nr = 3, nc = 5)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5]
-## [1,]  2.1  0.0  0.0    0    0
-## [2,]  0.0  2.1  0.0    0    0
-## [3,]  0.0  0.0  2.1    0    0</code></pre>
-<p>La función diag nos permite obtener la diagonal de una matriz dada o crear una matriz con una diagonal especificada-</p>
-<ul>
-<li>Ordena la matriz x &lt;- matrix(1:100, ncol=10):</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li>En orden descendente por su segunda columna y asigna el resultado a una nueva matrix x1. Pista: función order()</li>
-<li>En orden descendente por su segunda fila y asigna el resultado a una nueva matrix x2<br />
-</li>
-<li>Ordena solo la primera columna de x de forma descendente</li>
-</ol>
-<pre class="r"><code>x &lt;- matrix(1:100, ncol=10)
-
-x1&lt;-x[order(x[,2], decreasing=TRUE),]
-x2&lt;-x[order(x[2,], decreasing=TRUE),]
-x[,1] &lt;-  sort(x[,1],decreasing = TRUE)
-x1 &lt;- x</code></pre>
-<ul>
-<li>Accede al dataset “women”.</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li>Primero confirma que los datos están ordenados de forma creciente según la altura (height) y el peso (weight) sin mirar los datos.</li>
-<li>Crea una nueva variable “bmi”. Este valor responde a la siguiente fórmula:</li>
-</ol>
-<p><em>BMI = ( Weight in Pounds / (Height in inches) x (Height in inches) ) x 703</em></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Ordena el dataframe por el valor de bmi y por orden alfabético de la variable name</li>
-</ol>
-<pre class="r"><code>str(women)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    15 obs. of  3 variables:
-##  $ height: num  58 59 60 61 62 63 64 65 66 67 ...
-##  $ weight: num  115 117 120 123 126 129 132 135 139 142 ...
-##  $ bmi   : num  24 23.6 23.4 23.2 23 ...</code></pre>
-<pre class="r"><code>is.unsorted(women$height)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>is.unsorted(women$weight)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>women$bmi&lt;-(women$weight/women$height^2)*703
-order(women$bmi)</code></pre>
-<pre><code>##  [1] 13 12 14 11 10 15  9  8  7  6  5  4  3  2  1</code></pre>
-<ul>
-<li>Crea los siguientes vectores:</li>
-</ul>
-<p>Box office Star Wars: In Millions (!) First element: US, Second element:Non-US</p>
-<pre class="r"><code>new_hope = c(460.998007, 314.4)
-empire_strikes = c(290.475067, 247.9)
-return_jedi = c(309.306177, 165.8)</code></pre>
-<ul>
-<li>Construye la matriz star_wars_matrix con esos vectores</li>
-</ul>
-<pre class="r"><code>star_wars_matrix&lt;-rbind(new_hope,empire_strikes,return_jedi )
-star_wars_matrix</code></pre>
-<pre><code>##                    [,1]  [,2]
-## new_hope       460.9980 314.4
-## empire_strikes 290.4751 247.9
-## return_jedi    309.3062 165.8</code></pre>
-<ul>
-<li>Añádele nombres a las columnas y filas de la matriz según las descripciones dadas anteriormente de los datos</li>
-</ul>
-<pre class="r"><code>colnames(star_wars_matrix)&lt;-c(&quot;US&quot;,&quot;Non-US&quot;)
-star_wars_matrix</code></pre>
-<pre><code>##                      US Non-US
-## new_hope       460.9980  314.4
-## empire_strikes 290.4751  247.9
-## return_jedi    309.3062  165.8</code></pre>
-<ul>
-<li>Calcula las ganacias mundiales de cada película y guardalas en un vector que se llame worldwide_vector.</li>
-</ul>
-<pre class="r"><code>worldwide_vector&lt;-rowSums(star_wars_matrix)</code></pre>
-<ul>
-<li>Añade éste último vector como una columna nueva a la matriz star_wars_matrix y asigna el resultado a all_wars_matrix. Usa para ello la función cbind().</li>
-</ul>
-<pre class="r"><code>all_wars_matrix&lt;-cbind(star_wars_matrix,worldwide_vector)
-all_wars_matrix</code></pre>
-<pre><code>##                      US Non-US worldwide_vector
-## new_hope       460.9980  314.4         775.3980
-## empire_strikes 290.4751  247.9         538.3751
-## return_jedi    309.3062  165.8         475.1062</code></pre>
-<ul>
-<li>Calcula las ganancias totales en USA y fuera de USA para las tres películas. Puedes usar para ello la función colSums()</li>
-</ul>
-<pre class="r"><code>colSums(all_wars_matrix[,1:2])</code></pre>
-<pre><code>##       US   Non-US 
-## 1060.779  728.100</code></pre>
-<ul>
-<li>Calcula la media de ganancias para todas las películas fuera de los estados unidos. Asigna esa media la variable non_us_all.</li>
-</ul>
-<pre class="r"><code>non_us_all&lt;-mean(all_wars_matrix[,2])</code></pre>
-<ul>
-<li>Haz lo mismo pero solo para las dos primeras películas . Asigna el resultado a la variable non_us_some.</li>
-</ul>
-<pre class="r"><code>non_us_some&lt;-mean(all_wars_matrix[1:2,2])</code></pre>
-<ul>
-<li>Calcula cuantos visitantes hubo para cada película en cada área geográfica. Ya tienes las ganancias totales en star_wars_matrix. Asume que el precio de las entradas es de cinco euros/dólares.</li>
-</ul>
-<pre class="r"><code>star_wars_matrix/5</code></pre>
-<pre><code>##                      US Non-US
-## new_hope       92.19960  62.88
-## empire_strikes 58.09501  49.58
-## return_jedi    61.86124  33.16</code></pre>
-<ul>
-<li>Calcula la media de visitantes en territorio USA y en territorio noUS</li>
-</ul>
-<pre class="r"><code>mean(star_wars_matrix[,1]/5)</code></pre>
-<pre><code>## [1] 70.71862</code></pre>
-<pre class="r"><code>mean(star_wars_matrix[,2]/5)</code></pre>
-<pre><code>## [1] 48.54</code></pre>
-</div>
-<div id="subsetting-matrices-y-arrays" class="section level2">
-<h2>2.2 Subsetting matrices y arrays</h2>
-<ul>
-<li>Crea un array i &lt;- array(c(1:10),dim=c(5,2)). ¿Que información te dan los siguientes comandos?</li>
-</ul>
-<pre class="r"><code>i &lt;- array(c(1:10),dim=c(5,2))
-
-dim(i)</code></pre>
-<pre><code>## [1] 5 2</code></pre>
-<pre class="r"><code>#Nos dice el número de filas y columnas
-
-nrow(i) </code></pre>
-<pre><code>## [1] 5</code></pre>
-<pre class="r"><code>#Nos dice el número de filas
-
-ncol(i) </code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>#Nos dice el número de columnas</code></pre>
-<ul>
-<li>Crea un array de dimensiones 5 filas y dos columnas y rellénalo con valores del 1-5 y del 5 al 1</li>
-</ul>
-<pre class="r"><code>x &lt;- array(c(c(1:5),c(5:1)), dim = c(5,2))</code></pre>
-<ul>
-<li>¿Qué hace el comando x[i]? ¿y el comando x[i] &lt;- 0? Comprueba que tienes en x antes.</li>
-</ul>
-<pre class="r"><code>x</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    1    5
-## [2,]    2    4
-## [3,]    3    3
-## [4,]    4    2
-## [5,]    5    1</code></pre>
-<pre class="r"><code>x[6]</code></pre>
-<pre><code>## [1] 5</code></pre>
-<p>Devuelve el elemento i del array pero lo hace por columnas. El otro comando asigna el valor que pasamos a la derecha de &lt;-, en este caso 0, al elemento i del array.</p>
-<ul>
-<li>Descárgate el fichero array_datos.txt de PRADO (Datos/) e impórtalo en tu work space de R teniendo en cuenta que es un texto tabulado. Después crea un documento con los mismos datos pero en formato csv en vez de tab separated.</li>
-</ul>
-<pre class="r"><code>array_datos&lt;-read.table(&quot;./datasets/array_datos.txt&quot;)
-array_datos</code></pre>
-<pre><code>##   edad peso altura
-## 1   20   65    174
-## 2   22   70    180
-## 3   19   68    170</code></pre>
-<pre class="r"><code>write.csv(array_datos, file=&quot;./datasets/array_datos2.csv&quot;)</code></pre>
-</div>
-<div id="factors" class="section level2">
-<h2>2.3 Factors</h2>
-<ul>
-<li>Dado x = c(1, 2, 3, 3, 5, 3, 2, 4, NA), ¿cuáles son los levels de factor(x)?</li>
-</ul>
-<pre class="r"><code>x = c(1, 2, 3, 3, 5, 3, 2, 4, NA) 
-
-factor(x)</code></pre>
-<pre><code>## [1] 1    2    3    3    5    3    2    4    &lt;NA&gt;
-## Levels: 1 2 3 4 5</code></pre>
-<p>Los NA no se tiene como posibles valores del factor, por lo que los niveles de este serán 1, 2, 3, 4 y 5.</p>
-<ul>
-<li>Dado x &lt;- c(11, 22, 47, 47, 11, 47, 11) y la ejecución de la sentencia factor(x, levels=c(11, 22, 47), ordered=TRUE)¿cuál es el cuarto elemento de la salida?</li>
-</ul>
-<pre class="r"><code>x &lt;- c(11, 22, 47, 47, 11, 47, 11)
-factor(x, levels=c(11, 22, 47), ordered=TRUE)</code></pre>
-<pre><code>## [1] 11 22 47 47 11 47 11
-## Levels: 11 &lt; 22 &lt; 47</code></pre>
-<p>No hay cuarto elemento, ya que solo tenemos tres posibles valores para el factor</p>
-<ul>
-<li>Para el factor z &lt;- c(“p”, “a” , “g”, “t”, “b”), reemplaza el tercer elemento de z por “b”.</li>
-</ul>
-<pre class="r"><code>z &lt;- c(&quot;p&quot;, &quot;a&quot; , &quot;g&quot;, &quot;t&quot;, &quot;b&quot;)
-z[3] &lt;- &quot;b&quot;
-z</code></pre>
-<pre><code>## [1] &quot;p&quot; &quot;a&quot; &quot;b&quot; &quot;t&quot; &quot;b&quot;</code></pre>
-<ul>
-<li>Dado z &lt;- factor(c(“p”, “q”, “p”, “r”, “q”)) escribe una expresión de R que cambie el level “p” a “w”</li>
-</ul>
-<pre class="r"><code>z &lt;- factor(c(&quot;p&quot;, &quot;q&quot;, &quot;p&quot;, &quot;r&quot;, &quot;q&quot;))
-z</code></pre>
-<pre><code>## [1] p q p r q
-## Levels: p q r</code></pre>
-<pre class="r"><code>levels(z)[1] &lt;- &quot;w&quot;
-z</code></pre>
-<pre><code>## [1] w q w r q
-## Levels: w q r</code></pre>
-<ul>
-<li>Usa el dataset “iris” Escribe la expresión necesaria para convertir la variable “Sepal.Length” en un factor con cinco niveles (levels) .</li>
-</ul>
-<pre class="r"><code>irisfactor &lt;- factor(cut(iris$Sepal.Length, b=5))
-irisfactor</code></pre>
-<pre><code>##   [1] (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (4.3,5.02] 
-##   [6] (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (4.3,5.02] 
-##  [11] (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (5.74,6.46]
-##  [16] (5.02,5.74] (5.02,5.74] (5.02,5.74] (5.02,5.74] (5.02,5.74]
-##  [21] (5.02,5.74] (5.02,5.74] (4.3,5.02]  (5.02,5.74] (4.3,5.02] 
-##  [26] (4.3,5.02]  (4.3,5.02]  (5.02,5.74] (5.02,5.74] (4.3,5.02] 
-##  [31] (4.3,5.02]  (5.02,5.74] (5.02,5.74] (5.02,5.74] (4.3,5.02] 
-##  [36] (4.3,5.02]  (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (5.02,5.74]
-##  [41] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (5.02,5.74]
-##  [46] (4.3,5.02]  (5.02,5.74] (4.3,5.02]  (5.02,5.74] (4.3,5.02] 
-##  [51] (6.46,7.18] (5.74,6.46] (6.46,7.18] (5.02,5.74] (6.46,7.18]
-##  [56] (5.02,5.74] (5.74,6.46] (4.3,5.02]  (6.46,7.18] (5.02,5.74]
-##  [61] (4.3,5.02]  (5.74,6.46] (5.74,6.46] (5.74,6.46] (5.02,5.74]
-##  [66] (6.46,7.18] (5.02,5.74] (5.74,6.46] (5.74,6.46] (5.02,5.74]
-##  [71] (5.74,6.46] (5.74,6.46] (5.74,6.46] (5.74,6.46] (5.74,6.46]
-##  [76] (6.46,7.18] (6.46,7.18] (6.46,7.18] (5.74,6.46] (5.02,5.74]
-##  [81] (5.02,5.74] (5.02,5.74] (5.74,6.46] (5.74,6.46] (5.02,5.74]
-##  [86] (5.74,6.46] (6.46,7.18] (5.74,6.46] (5.02,5.74] (5.02,5.74]
-##  [91] (5.02,5.74] (5.74,6.46] (5.74,6.46] (4.3,5.02]  (5.02,5.74]
-##  [96] (5.02,5.74] (5.02,5.74] (5.74,6.46] (5.02,5.74] (5.02,5.74]
-## [101] (5.74,6.46] (5.74,6.46] (6.46,7.18] (5.74,6.46] (6.46,7.18]
-## [106] (7.18,7.9]  (4.3,5.02]  (7.18,7.9]  (6.46,7.18] (7.18,7.9] 
-## [111] (6.46,7.18] (5.74,6.46] (6.46,7.18] (5.02,5.74] (5.74,6.46]
-## [116] (5.74,6.46] (6.46,7.18] (7.18,7.9]  (7.18,7.9]  (5.74,6.46]
-## [121] (6.46,7.18] (5.02,5.74] (7.18,7.9]  (5.74,6.46] (6.46,7.18]
-## [126] (7.18,7.9]  (5.74,6.46] (5.74,6.46] (5.74,6.46] (7.18,7.9] 
-## [131] (7.18,7.9]  (7.18,7.9]  (5.74,6.46] (5.74,6.46] (5.74,6.46]
-## [136] (7.18,7.9]  (5.74,6.46] (5.74,6.46] (5.74,6.46] (6.46,7.18]
-## [141] (6.46,7.18] (6.46,7.18] (5.74,6.46] (6.46,7.18] (6.46,7.18]
-## [146] (6.46,7.18] (5.74,6.46] (6.46,7.18] (5.74,6.46] (5.74,6.46]
-## Levels: (4.3,5.02] (5.02,5.74] (5.74,6.46] (6.46,7.18] (7.18,7.9]</code></pre>
-<ul>
-<li>El factor responses se define como:</li>
-</ul>
-<p><em>responses &lt;- factor(c(“Agree”, “Agree”, “Strongly Agree”, “Disagree”, “Agree”)) </em></p>
-<p>Sin embargo nos damos cuenta que tiene un nuevo nivel, “Strongly Disagree”, que no estaba presente cuando se creó. Añade el nuevo nivel al factor y conviértelo en un factor ordenado de la siguiente forma:</p>
-<p><em>Levels: Strongly Agree &lt; Agree &lt; Disagree &lt; Strongly Disagree</em></p>
-<pre class="r"><code>responses &lt;- factor(c(&quot;Agree&quot;, &quot;Agree&quot;, &quot;Strongly Agree&quot;, &quot;Disagree&quot;, &quot;Agree&quot;))
-levels(responses) = c(levels(responses), &quot;Strongly disagree&quot;)
-responses = factor(responses, levels(responses)[c(3,1:2,4)], ordered = TRUE)
-responses</code></pre>
-<pre><code>## [1] Agree          Agree          Strongly Agree Disagree      
-## [5] Agree         
-## Levels: Strongly Agree &lt; Agree &lt; Disagree &lt; Strongly disagree</code></pre>
-<ul>
-<li>Dado el factor:</li>
-</ul>
-<p><em>x &lt;- factor(c(“high”, “low”, “medium”, “high”, “high”, “low”, “medium”))</em></p>
-<p>Escribe la expresión en R que permita dar valores numéricos únicos para los distintos niveles (levels) de x según el siguiente esquema:</p>
-<p><em>level high =&gt; value 1 level low =&gt; value 2 level medium =&gt; value 3</em></p>
-<pre class="r"><code>x &lt;- factor(c(&quot;high&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;high&quot;, &quot;low&quot;, &quot;medium&quot;), levels=c(&quot;high&quot;,&quot;low&quot;,&quot;medium&quot;),labels=c(1,2,3))
-unique(x)</code></pre>
-<pre><code>## [1] 1 2 3
-## Levels: 1 2 3</code></pre>
+y&lt;-cbind(beaver2,&quot;ID&quot;=2)
+beavers&lt;-rbind(x,y)
+subb &lt;- subset(beavers, beavers[,&quot;activ&quot;]==1)
+nrow(subb)</code></pre>
+<pre><code>## [1] 68</code></pre>
 </div>
 </div>
 <div id="acceso-y-seleccion-de-secciones-de-un-data-frames" class="section level1">
@@ -1088,6 +675,196 @@ minorMurder[nrow(minorMurder),]</code></pre>
 ##  [5] &quot;Hawaii&quot;        &quot;Illinois&quot;      &quot;Massachusetts&quot; &quot;Nevada&quot;       
 ##  [9] &quot;New Jersey&quot;    &quot;New York&quot;      &quot;Rhode Island&quot;  &quot;Texas&quot;        
 ## [13] &quot;Utah&quot;</code></pre>
+<p>Carga el set de datos CO2 y realiza las siguientes acciones:</p>
+<ol style="list-style-type: decimal">
+<li>Ordena alfabéticamente los datos en function de la variable Plant. Recuerda que Plant es un factor. Imprime el resultado por pantalla para comprobarlo</li>
+<li>Ordena los datos en función del incremento de la variable uptake y el orden alfabético de la planta (en ese orden)</li>
+<li>Ordena de nuevo los datos en function del increment de la variable uptake y el orden alfabético reverso de la planta (en ese orden)</li>
+</ol>
+<pre class="r"><code>CO2</code></pre>
+<pre><code>##    Plant        Type  Treatment conc uptake
+## 1    Qn1      Quebec nonchilled   95   16.0
+## 2    Qn1      Quebec nonchilled  175   30.4
+## 3    Qn1      Quebec nonchilled  250   34.8
+## 4    Qn1      Quebec nonchilled  350   37.2
+## 5    Qn1      Quebec nonchilled  500   35.3
+## 6    Qn1      Quebec nonchilled  675   39.2
+## 7    Qn1      Quebec nonchilled 1000   39.7
+## 8    Qn2      Quebec nonchilled   95   13.6
+## 9    Qn2      Quebec nonchilled  175   27.3
+## 10   Qn2      Quebec nonchilled  250   37.1
+## 11   Qn2      Quebec nonchilled  350   41.8
+## 12   Qn2      Quebec nonchilled  500   40.6
+## 13   Qn2      Quebec nonchilled  675   41.4
+## 14   Qn2      Quebec nonchilled 1000   44.3
+## 15   Qn3      Quebec nonchilled   95   16.2
+## 16   Qn3      Quebec nonchilled  175   32.4
+## 17   Qn3      Quebec nonchilled  250   40.3
+## 18   Qn3      Quebec nonchilled  350   42.1
+## 19   Qn3      Quebec nonchilled  500   42.9
+## 20   Qn3      Quebec nonchilled  675   43.9
+## 21   Qn3      Quebec nonchilled 1000   45.5
+## 22   Qc1      Quebec    chilled   95   14.2
+## 23   Qc1      Quebec    chilled  175   24.1
+## 24   Qc1      Quebec    chilled  250   30.3
+## 25   Qc1      Quebec    chilled  350   34.6
+## 26   Qc1      Quebec    chilled  500   32.5
+## 27   Qc1      Quebec    chilled  675   35.4
+## 28   Qc1      Quebec    chilled 1000   38.7
+## 29   Qc2      Quebec    chilled   95    9.3
+## 30   Qc2      Quebec    chilled  175   27.3
+## 31   Qc2      Quebec    chilled  250   35.0
+## 32   Qc2      Quebec    chilled  350   38.8
+## 33   Qc2      Quebec    chilled  500   38.6
+## 34   Qc2      Quebec    chilled  675   37.5
+## 35   Qc2      Quebec    chilled 1000   42.4
+## 36   Qc3      Quebec    chilled   95   15.1
+## 37   Qc3      Quebec    chilled  175   21.0
+## 38   Qc3      Quebec    chilled  250   38.1
+## 39   Qc3      Quebec    chilled  350   34.0
+## 40   Qc3      Quebec    chilled  500   38.9
+## 41   Qc3      Quebec    chilled  675   39.6
+## 42   Qc3      Quebec    chilled 1000   41.4
+## 43   Mn1 Mississippi nonchilled   95   10.6
+## 44   Mn1 Mississippi nonchilled  175   19.2
+## 45   Mn1 Mississippi nonchilled  250   26.2
+## 46   Mn1 Mississippi nonchilled  350   30.0
+## 47   Mn1 Mississippi nonchilled  500   30.9
+## 48   Mn1 Mississippi nonchilled  675   32.4
+## 49   Mn1 Mississippi nonchilled 1000   35.5
+## 50   Mn2 Mississippi nonchilled   95   12.0
+## 51   Mn2 Mississippi nonchilled  175   22.0
+## 52   Mn2 Mississippi nonchilled  250   30.6
+## 53   Mn2 Mississippi nonchilled  350   31.8
+## 54   Mn2 Mississippi nonchilled  500   32.4
+## 55   Mn2 Mississippi nonchilled  675   31.1
+## 56   Mn2 Mississippi nonchilled 1000   31.5
+## 57   Mn3 Mississippi nonchilled   95   11.3
+## 58   Mn3 Mississippi nonchilled  175   19.4
+## 59   Mn3 Mississippi nonchilled  250   25.8
+## 60   Mn3 Mississippi nonchilled  350   27.9
+## 61   Mn3 Mississippi nonchilled  500   28.5
+## 62   Mn3 Mississippi nonchilled  675   28.1
+## 63   Mn3 Mississippi nonchilled 1000   27.8
+## 64   Mc1 Mississippi    chilled   95   10.5
+## 65   Mc1 Mississippi    chilled  175   14.9
+## 66   Mc1 Mississippi    chilled  250   18.1
+## 67   Mc1 Mississippi    chilled  350   18.9
+## 68   Mc1 Mississippi    chilled  500   19.5
+## 69   Mc1 Mississippi    chilled  675   22.2
+## 70   Mc1 Mississippi    chilled 1000   21.9
+## 71   Mc2 Mississippi    chilled   95    7.7
+## 72   Mc2 Mississippi    chilled  175   11.4
+## 73   Mc2 Mississippi    chilled  250   12.3
+## 74   Mc2 Mississippi    chilled  350   13.0
+## 75   Mc2 Mississippi    chilled  500   12.5
+## 76   Mc2 Mississippi    chilled  675   13.7
+## 77   Mc2 Mississippi    chilled 1000   14.4
+## 78   Mc3 Mississippi    chilled   95   10.6
+## 79   Mc3 Mississippi    chilled  175   18.0
+## 80   Mc3 Mississippi    chilled  250   17.9
+## 81   Mc3 Mississippi    chilled  350   17.9
+## 82   Mc3 Mississippi    chilled  500   17.9
+## 83   Mc3 Mississippi    chilled  675   18.9
+## 84   Mc3 Mississippi    chilled 1000   19.9</code></pre>
+<pre class="r"><code>CO2$Plant #is unsorted</code></pre>
+<pre><code>##  [1] Qn1 Qn1 Qn1 Qn1 Qn1 Qn1 Qn1 Qn2 Qn2 Qn2 Qn2 Qn2 Qn2 Qn2 Qn3 Qn3 Qn3
+## [18] Qn3 Qn3 Qn3 Qn3 Qc1 Qc1 Qc1 Qc1 Qc1 Qc1 Qc1 Qc2 Qc2 Qc2 Qc2 Qc2 Qc2
+## [35] Qc2 Qc3 Qc3 Qc3 Qc3 Qc3 Qc3 Qc3 Mn1 Mn1 Mn1 Mn1 Mn1 Mn1 Mn1 Mn2 Mn2
+## [52] Mn2 Mn2 Mn2 Mn2 Mn2 Mn3 Mn3 Mn3 Mn3 Mn3 Mn3 Mn3 Mc1 Mc1 Mc1 Mc1 Mc1
+## [69] Mc1 Mc1 Mc2 Mc2 Mc2 Mc2 Mc2 Mc2 Mc2 Mc3 Mc3 Mc3 Mc3 Mc3 Mc3 Mc3
+## 12 Levels: Qn1 &lt; Qn2 &lt; Qn3 &lt; Qc1 &lt; Qc3 &lt; Qc2 &lt; Mn3 &lt; Mn2 &lt; Mn1 &lt; ... &lt; Mc1</code></pre>
+<pre class="r"><code>co_2ordered &lt;- CO2[order(CO2$Plant),]
+co_2ordered</code></pre>
+<pre><code>##    Plant        Type  Treatment conc uptake
+## 1    Qn1      Quebec nonchilled   95   16.0
+## 2    Qn1      Quebec nonchilled  175   30.4
+## 3    Qn1      Quebec nonchilled  250   34.8
+## 4    Qn1      Quebec nonchilled  350   37.2
+## 5    Qn1      Quebec nonchilled  500   35.3
+## 6    Qn1      Quebec nonchilled  675   39.2
+## 7    Qn1      Quebec nonchilled 1000   39.7
+## 8    Qn2      Quebec nonchilled   95   13.6
+## 9    Qn2      Quebec nonchilled  175   27.3
+## 10   Qn2      Quebec nonchilled  250   37.1
+## 11   Qn2      Quebec nonchilled  350   41.8
+## 12   Qn2      Quebec nonchilled  500   40.6
+## 13   Qn2      Quebec nonchilled  675   41.4
+## 14   Qn2      Quebec nonchilled 1000   44.3
+## 15   Qn3      Quebec nonchilled   95   16.2
+## 16   Qn3      Quebec nonchilled  175   32.4
+## 17   Qn3      Quebec nonchilled  250   40.3
+## 18   Qn3      Quebec nonchilled  350   42.1
+## 19   Qn3      Quebec nonchilled  500   42.9
+## 20   Qn3      Quebec nonchilled  675   43.9
+## 21   Qn3      Quebec nonchilled 1000   45.5
+## 22   Qc1      Quebec    chilled   95   14.2
+## 23   Qc1      Quebec    chilled  175   24.1
+## 24   Qc1      Quebec    chilled  250   30.3
+## 25   Qc1      Quebec    chilled  350   34.6
+## 26   Qc1      Quebec    chilled  500   32.5
+## 27   Qc1      Quebec    chilled  675   35.4
+## 28   Qc1      Quebec    chilled 1000   38.7
+## 36   Qc3      Quebec    chilled   95   15.1
+## 37   Qc3      Quebec    chilled  175   21.0
+## 38   Qc3      Quebec    chilled  250   38.1
+## 39   Qc3      Quebec    chilled  350   34.0
+## 40   Qc3      Quebec    chilled  500   38.9
+## 41   Qc3      Quebec    chilled  675   39.6
+## 42   Qc3      Quebec    chilled 1000   41.4
+## 29   Qc2      Quebec    chilled   95    9.3
+## 30   Qc2      Quebec    chilled  175   27.3
+## 31   Qc2      Quebec    chilled  250   35.0
+## 32   Qc2      Quebec    chilled  350   38.8
+## 33   Qc2      Quebec    chilled  500   38.6
+## 34   Qc2      Quebec    chilled  675   37.5
+## 35   Qc2      Quebec    chilled 1000   42.4
+## 57   Mn3 Mississippi nonchilled   95   11.3
+## 58   Mn3 Mississippi nonchilled  175   19.4
+## 59   Mn3 Mississippi nonchilled  250   25.8
+## 60   Mn3 Mississippi nonchilled  350   27.9
+## 61   Mn3 Mississippi nonchilled  500   28.5
+## 62   Mn3 Mississippi nonchilled  675   28.1
+## 63   Mn3 Mississippi nonchilled 1000   27.8
+## 50   Mn2 Mississippi nonchilled   95   12.0
+## 51   Mn2 Mississippi nonchilled  175   22.0
+## 52   Mn2 Mississippi nonchilled  250   30.6
+## 53   Mn2 Mississippi nonchilled  350   31.8
+## 54   Mn2 Mississippi nonchilled  500   32.4
+## 55   Mn2 Mississippi nonchilled  675   31.1
+## 56   Mn2 Mississippi nonchilled 1000   31.5
+## 43   Mn1 Mississippi nonchilled   95   10.6
+## 44   Mn1 Mississippi nonchilled  175   19.2
+## 45   Mn1 Mississippi nonchilled  250   26.2
+## 46   Mn1 Mississippi nonchilled  350   30.0
+## 47   Mn1 Mississippi nonchilled  500   30.9
+## 48   Mn1 Mississippi nonchilled  675   32.4
+## 49   Mn1 Mississippi nonchilled 1000   35.5
+## 71   Mc2 Mississippi    chilled   95    7.7
+## 72   Mc2 Mississippi    chilled  175   11.4
+## 73   Mc2 Mississippi    chilled  250   12.3
+## 74   Mc2 Mississippi    chilled  350   13.0
+## 75   Mc2 Mississippi    chilled  500   12.5
+## 76   Mc2 Mississippi    chilled  675   13.7
+## 77   Mc2 Mississippi    chilled 1000   14.4
+## 78   Mc3 Mississippi    chilled   95   10.6
+## 79   Mc3 Mississippi    chilled  175   18.0
+## 80   Mc3 Mississippi    chilled  250   17.9
+## 81   Mc3 Mississippi    chilled  350   17.9
+## 82   Mc3 Mississippi    chilled  500   17.9
+## 83   Mc3 Mississippi    chilled  675   18.9
+## 84   Mc3 Mississippi    chilled 1000   19.9
+## 64   Mc1 Mississippi    chilled   95   10.5
+## 65   Mc1 Mississippi    chilled  175   14.9
+## 66   Mc1 Mississippi    chilled  250   18.1
+## 67   Mc1 Mississippi    chilled  350   18.9
+## 68   Mc1 Mississippi    chilled  500   19.5
+## 69   Mc1 Mississippi    chilled  675   22.2
+## 70   Mc1 Mississippi    chilled 1000   21.9</code></pre>
+<pre class="r"><code>is.unsorted(co_2ordered$Plant)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<div id="importando-informacion" class="section level2">
+<h2>3.2 Importando información</h2>
 <ul>
 <li>Vamos a trabajar con otro dataframe. Descarga el fichero student.txt de la plataforma PRADO, almacena la información en una variable llamada “students”. Ten en cuenta que los datos son tab-delimited y tienen un texto para cada columna. Comprueba que R ha leído correctamente el fichero imprimiendo el objeto en la pantalla.</li>
 </ul>
@@ -1237,6 +1014,295 @@ students.female = students.new[which(students.new$sym==&quot;F&quot;),]</code></
 <li>Utiliza la function write.table() para guarder el contenido de student.new en un archivo.</li>
 </ul>
 <pre class="r"><code>write.table(students.new, &quot;./datasets/studentsnew.txt&quot;, col.names = TRUE)</code></pre>
+</div>
+<div id="lists" class="section level2">
+<h2>3.3 Lists</h2>
+<ul>
+<li>Ejemplo de cómo crear una lista. Ejecuta los comandos y describe que es lo que ocurre</li>
+</ul>
+<pre class="r"><code>my_list &lt;- list(name=&quot;Fred&quot;, wife=&quot;Mary&quot;, nochildren=3, child.ages=c(4,7,9)) </code></pre>
+<p>*Crea una lista con ciertos atributos y valores</p>
+<pre class="r"><code>my_list2&lt;- list(empleado=&quot;Jose&quot;, trabajo=&quot;Analista Datos&quot;, meses_trabajo=c(month.abb[1:3]))</code></pre>
+<p>*Muestra los atributos, (nombre de las variables) de nuestra lista</p>
+<pre class="r"><code>names(my_list2) </code></pre>
+<pre><code>## [1] &quot;empleado&quot;      &quot;trabajo&quot;       &quot;meses_trabajo&quot;</code></pre>
+<ul>
+<li>Similar a lo anteior pero de otro modo</li>
+</ul>
+<pre class="r"><code>my_list2[1:3]</code></pre>
+<pre><code>## $empleado
+## [1] &quot;Jose&quot;
+## 
+## $trabajo
+## [1] &quot;Analista Datos&quot;
+## 
+## $meses_trabajo
+## [1] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot;</code></pre>
+<ul>
+<li>Muestra el contenido del segundo campo de la lista y el nombre del mismo</li>
+</ul>
+<pre class="r"><code>my_list2[2]</code></pre>
+<pre><code>## $trabajo
+## [1] &quot;Analista Datos&quot;</code></pre>
+<ul>
+<li>Muestra el contenido del segundo campo de la lista</li>
+</ul>
+<pre class="r"><code>my_list2[[2]]</code></pre>
+<pre><code>## [1] &quot;Analista Datos&quot;</code></pre>
+<ul>
+<li>Muestra el contenido del campo etiquetado como wife</li>
+</ul>
+<pre class="r"><code>my_list$wife[1] </code></pre>
+<pre><code>## [1] &quot;Mary&quot;</code></pre>
+<ul>
+<li>El Campo child.ages en la lista tiene 3 elementos, muestra el segundo.</li>
+</ul>
+<pre class="r"><code>my_list$child.ages[3]</code></pre>
+<pre><code>## [1] 9</code></pre>
+<ul>
+<li>Número de elementos que hay en el campo 4 de la lista</li>
+</ul>
+<pre class="r"><code>length(my_list[[4]]) </code></pre>
+<pre><code>## [1] 3</code></pre>
+<ul>
+<li>Asigna a wife valores del 1 al 12</li>
+</ul>
+<pre class="r"><code>my_list$wife &lt;- 1:12 </code></pre>
+<ul>
+<li>Asigna a wife valor NULL</li>
+</ul>
+<pre class="r"><code>my_list$wife &lt;- NULL</code></pre>
+<ul>
+<li>Crea una lista con los nombres de los meses</li>
+</ul>
+<pre class="r"><code>my_list &lt;- c(my_list, list(my_title2=month.name[1:12]))</code></pre>
+<ul>
+<li>Crea un dataframe con los valores resultantes</li>
+</ul>
+<pre class="r"><code>data.frame(unlist(my_list))</code></pre>
+<pre><code>##             unlist.my_list.
+## name                   Fred
+## nochildren                3
+## child.ages1               4
+## child.ages2               7
+## child.ages3               9
+## my_title21          January
+## my_title22         February
+## my_title23            March
+## my_title24            April
+## my_title25              May
+## my_title26             June
+## my_title27             July
+## my_title28           August
+## my_title29        September
+## my_title210         October
+## my_title211        November
+## my_title212        December</code></pre>
+<ul>
+<li>Crea una matriz con los valores resultantes</li>
+</ul>
+<pre class="r"><code>matrix(unlist(my_list))</code></pre>
+<pre><code>##       [,1]       
+##  [1,] &quot;Fred&quot;     
+##  [2,] &quot;3&quot;        
+##  [3,] &quot;4&quot;        
+##  [4,] &quot;7&quot;        
+##  [5,] &quot;9&quot;        
+##  [6,] &quot;January&quot;  
+##  [7,] &quot;February&quot; 
+##  [8,] &quot;March&quot;    
+##  [9,] &quot;April&quot;    
+## [10,] &quot;May&quot;      
+## [11,] &quot;June&quot;     
+## [12,] &quot;July&quot;     
+## [13,] &quot;August&quot;   
+## [14,] &quot;September&quot;
+## [15,] &quot;October&quot;  
+## [16,] &quot;November&quot; 
+## [17,] &quot;December&quot;</code></pre>
+</div>
+<div id="table" class="section level2">
+<h2>3.4 Table ()</h2>
+<p>La función table() cuenta el número de elementos repetidos en un vector. Es la función más básica de clustering.</p>
+<ul>
+<li>Cuenta el número de entradas idénticas en la variable Sepal.Length del dataset iris.</li>
+</ul>
+<pre class="r"><code>table(iris$Sepal.Length)</code></pre>
+<pre><code>## 
+## 4.3 4.4 4.5 4.6 4.7 4.8 4.9   5 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8 5.9   6 
+##   1   3   1   4   2   5   6  10   9   4   1   6   7   6   8   7   3   6 
+## 6.1 6.2 6.3 6.4 6.5 6.6 6.7 6.8 6.9   7 7.1 7.2 7.3 7.4 7.6 7.7 7.9 
+##   6   4   9   7   5   2   8   3   4   1   1   3   1   1   1   4   1</code></pre>
+</div>
+<div id="como-ordenar-datos-hacer-selecciones-con-if-calcular-condicionales-totales-transponer-columnas-y-filas" class="section level2">
+<h2>3.5 Como ordenar datos, hacer selecciones con if(), calcular condicionales totales, transponer columnas y filas</h2>
+<p>Vamos a volver a utilizar el datasets mtcars.</p>
+<ul>
+<li>Ordena este data set de forma ascendente según su valo de hp. PISTA: with()</li>
+</ul>
+<pre class="r"><code>mtcars[order(mtcars$hp),]</code></pre>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+##                     mpgClass
+## Honda Civic             High
+## Merc 240D               High
+## Toyota Corolla          High
+## Fiat 128                High
+## Fiat X1-9               High
+## Porsche 914-2           High
+## Datsun 710              High
+## Merc 230                High
+## Toyota Corona           High
+## Valiant                  Low
+## Volvo 142E              High
+## Mazda RX4               High
+## Mazda RX4 Wag           High
+## Hornet 4 Drive          High
+## Lotus Europa            High
+## Merc 280                 Low
+## Merc 280C                Low
+## Dodge Challenger         Low
+## AMC Javelin              Low
+## Hornet Sportabout        Low
+## Pontiac Firebird         Low
+## Ferrari Dino             Low
+## Merc 450SE               Low
+## Merc 450SL               Low
+## Merc 450SLC              Low
+## Cadillac Fleetwood       Low
+## Lincoln Continental      Low
+## Chrysler Imperial        Low
+## Duster 360               Low
+## Camaro Z28               Low
+## Ford Pantera L           Low
+## Maserati Bora            Low</code></pre>
+<ul>
+<li>Hazlo ahora de forma descendente</li>
+</ul>
+<pre class="r"><code>mtcars[order(mtcars$hp, decreasing = TRUE),]</code></pre>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+##                     mpgClass
+## Maserati Bora            Low
+## Ford Pantera L           Low
+## Duster 360               Low
+## Camaro Z28               Low
+## Chrysler Imperial        Low
+## Lincoln Continental      Low
+## Cadillac Fleetwood       Low
+## Merc 450SE               Low
+## Merc 450SL               Low
+## Merc 450SLC              Low
+## Hornet Sportabout        Low
+## Pontiac Firebird         Low
+## Ferrari Dino             Low
+## Dodge Challenger         Low
+## AMC Javelin              Low
+## Merc 280                 Low
+## Merc 280C                Low
+## Lotus Europa            High
+## Mazda RX4               High
+## Mazda RX4 Wag           High
+## Hornet 4 Drive          High
+## Volvo 142E              High
+## Valiant                  Low
+## Toyota Corona           High
+## Merc 230                High
+## Datsun 710              High
+## Porsche 914-2           High
+## Fiat 128                High
+## Fiat X1-9               High
+## Toyota Corolla          High
+## Merc 240D               High
+## Honda Civic             High</code></pre>
+<ul>
+<li>Calcula la media de la columna mpg.</li>
+</ul>
+<pre class="r"><code>mean(mtcars$mpg)</code></pre>
+<pre><code>## [1] 20.09062</code></pre>
+<p>Calcula la media de mpg para aquellos datos cuyo valor de hp sea menor que 150 y por separado para aquellos cuyo valor de hp sea mayor o igual a 150</p>
+<pre class="r"><code>mean(mtcars[mtcars$hp&lt;150,]$mpg)</code></pre>
+<pre><code>## [1] 24.22353</code></pre>
+<pre class="r"><code>mean(mtcars[mtcars$hp&gt;150,]$mpg)</code></pre>
+<pre><code>## [1] 15.41538</code></pre>
+<ul>
+<li>Busca los valores únicos de la columna cyl de mtcars. PISTA unique()</li>
+</ul>
+<pre class="r"><code>unique(mtcars$cyl)</code></pre>
+<pre><code>## [1] 6 4 8</code></pre>
+<ul>
+<li>Obten los datos de mpg cyl disp hp para “Toyota Corolla”</li>
+</ul>
+<pre class="r"><code>mtcars[&quot;Toyota Corolla&quot;,c(&quot;mpg&quot;,&quot;cyl&quot;,&quot;disp&quot;,&quot;hp&quot;)]</code></pre>
+<pre><code>##                 mpg cyl disp hp
+## Toyota Corolla 33.9   4 71.1 65</code></pre>
+<ul>
+<li>Crea una nueva variable mpgClass de tipo categórico cuyo valor es “Low“ si el valor de mpg es menor que la media de la columna mpg y “High” si es mayor que la media de mpg. PISTA ifelse(). Combina ese comando con with() para añadir la nueva variable a mtcars ¿qué pasa cuando ejecutas este comando?</li>
+</ul>
+<pre class="r"><code>mtcars$mpgClass&lt;-ifelse(mtcars$mpg&lt;(mean(mtcars$mpg)),&quot;Low&quot;, &quot;High&quot;)</code></pre>
+</div>
 </div>
 
 
