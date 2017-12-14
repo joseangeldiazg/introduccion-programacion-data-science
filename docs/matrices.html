@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="joseangeldiazg" />
+
+
+<title>Introducción a R II</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Programación para Ciencia de Datos con R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="vectores.html">Vectores</a>
+</li>
+<li>
+  <a href="matrices.html">Matrices</a>
+</li>
+<li>
+  <a href="dataframes.html">Dataframes</a>
+</li>
+<li>
+  <a href="strings.html">Strings</a>
+</li>
+<li>
+  <a href="inputoutput.html">Input Output</a>
+</li>
+<li>
+  <a href="functions.html">Functions</a>
+</li>
+<li>
+  <a href="progama.html">Program Structures</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introducción a R II</h1>
+<h4 class="author"><em>joseangeldiazg</em></h4>
+<h4 class="date"><em>13/12/2017</em></h4>
+
+</div>
+
+
+<div id="matrices-factores-y-dataframes" class="section level1">
+<h1>Matrices, factores y dataframes</h1>
+<div id="matrices" class="section level2">
+<h2>2.1 Matrices</h2>
+<ul>
+<li>Ejecuta los siguientes comandos.</li>
+</ul>
+<pre class="r"><code>matrix(data=5, nr=2, nc=2)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    5    5
+## [2,]    5    5</code></pre>
+<pre class="r"><code>matrix(1:6, 2, 3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<pre class="r"><code>matrix(1:6, 2, 3, byrow=TRUE)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+<ul>
+<li>Crea un vector z con los 30 primeros números y crea con el una matriz m con 3 filas y 10 columnas.</li>
+</ul>
+<pre class="r"><code>z&lt;-c(1:30)
+
+m&lt;-matrix(data=z, nr=3, nc=10, byrow = TRUE)</code></pre>
+<ul>
+<li>Escribe la tercera columna en un vector</li>
+</ul>
+<pre class="r"><code>z&lt;-m[,3]</code></pre>
+<p>*Create in R the matrices</p>
+<p>x =3 21 −1 1</p>
+<p>y =1 4 0 0 1 -1</p>
+<pre class="r"><code>x&lt;-c(3,21,-1,1)
+xmatrix&lt;-matrix(data=x,ncol = 2, nrow = 2, byrow = TRUE)
+xmatrix</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    3   21
+## [2,]   -1    1</code></pre>
+<pre class="r"><code>y&lt;-c(1,4,0,0,1,-1)
+ymatrix&lt;-matrix(data=y, ncol=3, nrow=2, byrow = TRUE)
+ymatrix</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    0
+## [2,]    0    1   -1</code></pre>
+<ul>
+<li>Y calcula los efectos de los siguientes comandos</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li>x[1,]</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-alpha">
+<li>x[2,]</li>
+</ol></li>
+<li><ol start="3" style="list-style-type: lower-alpha">
+<li>x[,2]</li>
+</ol></li>
+<li><ol start="4" style="list-style-type: lower-alpha">
+<li>y[1,2]</li>
+</ol></li>
+<li><ol start="5" style="list-style-type: lower-alpha">
+<li>y[,2:3]</li>
+</ol></li>
+</ol>
+<pre class="r"><code>xmatrix[1,]</code></pre>
+<pre><code>## [1]  3 21</code></pre>
+<pre class="r"><code>xmatrix[2,]</code></pre>
+<pre><code>## [1] -1  1</code></pre>
+<pre class="r"><code>xmatrix[,2]</code></pre>
+<pre><code>## [1] 21  1</code></pre>
+<pre class="r"><code>ymatrix[1,2]</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>ymatrix[,2:3]</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    4    0
+## [2,]    1   -1</code></pre>
+<ul>
+<li>Transforma la matriz m que creaste en el ejercicio anterior en un array multidimensional.</li>
+</ul>
+<pre class="r"><code>z&lt;-c(1:30)
+m&lt;-matrix(data=z, nr=3, nc=10, byrow = TRUE)
+
+marray = array(m, dim=c(dim(m),2))
+marray</code></pre>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]    1    2    3    4    5    6    7    8    9    10
+## [2,]   11   12   13   14   15   16   17   18   19    20
+## [3,]   21   22   23   24   25   26   27   28   29    30
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+## [1,]    1    2    3    4    5    6    7    8    9    10
+## [2,]   11   12   13   14   15   16   17   18   19    20
+## [3,]   21   22   23   24   25   26   27   28   29    30</code></pre>
+<ul>
+<li>Crea un array de 5 x 5 y rellénalo con valores del 1 al 25. Investiga la función array(). Llama al array x</li>
+</ul>
+<pre class="r"><code>x&lt;-array(1:25, dim=c(5,5,1))
+x</code></pre>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    6   11   16   21
+## [2,]    2    7   12   17   22
+## [3,]    3    8   13   18   23
+## [4,]    4    9   14   19   24
+## [5,]    5   10   15   20   25</code></pre>
+<ul>
+<li>Escribe el array x en un vector y</li>
+</ul>
+<pre class="r"><code>y&lt;-x[1:25]</code></pre>
+<ul>
+<li>Dadas las matrices m1 y m2 usa rbind() y cbind() para crear matrices nuevas utilizando estas funciones, llamalas M1 y M2. ¿En que se diferencian las matrices creadas?</li>
+</ul>
+<pre class="r"><code>m1 &lt;- matrix(1, nr = 2, nc = 2)
+m2 &lt;- matrix(2, nr = 2, nc = 2)
+M1 &lt;-cbind(m1, m2)
+M2 &lt;-rbind(m1, m2)
+M1</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    1    2    2
+## [2,]    1    1    2    2</code></pre>
+<pre class="r"><code>M2</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    1
+## [3,]    2    2
+## [4,]    2    2</code></pre>
+<p>La diferencia está en que cbind une por las columnas y rbind une por filas</p>
+<ul>
+<li>El operador para el producto de dos matrices es ‘%* %’. Por ejemplo, considerando las dos matrices creadas en el ejercicio anterior utilízalo.</li>
+</ul>
+<pre class="r"><code>M1%*%M2</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]   10   10
+## [2,]   10   10</code></pre>
+<ul>
+<li>Usa la matriz M1 del ejercicio anterior y aplica la función t(). ¿qué hace esa función?</li>
+</ul>
+<pre class="r"><code>help(t)
+t(M1)</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    1
+## [3,]    2    2
+## [4,]    2    2</code></pre>
+<p>La función T nos ofrece la matriz o el dataframe traspuesto del que le pasemos como argumento</p>
+<ul>
+<li>Ejecuta los siguientes comandos basados en la función diag() sobre las matrices creadas anteriormente m1 y m2. ¿Qué tipo de acciones puedes ejecutar con ella?</li>
+</ul>
+<pre class="r"><code>diag(m1)</code></pre>
+<pre><code>## [1] 1 1</code></pre>
+<pre class="r"><code>diag(rbind(m1, m2) %*% cbind(m1, m2))</code></pre>
+<pre><code>## [1] 2 2 8 8</code></pre>
+<pre class="r"><code>diag(m1) &lt;- 10
+
+diag(3)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1</code></pre>
+<pre class="r"><code>v &lt;- c(10, 20, 30)
+
+diag(v)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]   10    0    0
+## [2,]    0   20    0
+## [3,]    0    0   30</code></pre>
+<pre class="r"><code>diag(2.1, nr = 3, nc = 5)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]  2.1  0.0  0.0    0    0
+## [2,]  0.0  2.1  0.0    0    0
+## [3,]  0.0  0.0  2.1    0    0</code></pre>
+<p>La función diag nos permite obtener la diagonal de una matriz dada o crear una matriz con una diagonal especificada-</p>
+<ul>
+<li>Ordena la matriz x &lt;- matrix(1:100, ncol=10):</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>En orden descendente por su segunda columna y asigna el resultado a una nueva matrix x1. Pista: función order()</li>
+<li>En orden descendente por su segunda fila y asigna el resultado a una nueva matrix x2<br />
+</li>
+<li>Ordena solo la primera columna de x de forma descendente</li>
+</ol>
+<pre class="r"><code>x &lt;- matrix(1:100, ncol=10)
+
+x1&lt;-x[order(x[,2], decreasing=TRUE),]
+x2&lt;-x[order(x[2,], decreasing=TRUE),]
+x[,1] &lt;-  sort(x[,1],decreasing = TRUE)
+x1 &lt;- x</code></pre>
+<ul>
+<li>Accede al dataset “women”.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Primero confirma que los datos están ordenados de forma creciente según la altura (height) y el peso (weight) sin mirar los datos.</li>
+<li>Crea una nueva variable “bmi”. Este valor responde a la siguiente fórmula:</li>
+</ol>
+<p><em>BMI = ( Weight in Pounds / (Height in inches) x (Height in inches) ) x 703</em></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Ordena el dataframe por el valor de bmi y por orden alfabético de la variable name</li>
+</ol>
+<pre class="r"><code>str(women)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    15 obs. of  3 variables:
+##  $ height: num  58 59 60 61 62 63 64 65 66 67 ...
+##  $ weight: num  115 117 120 123 126 129 132 135 139 142 ...
+##  $ bmi   : num  24 23.6 23.4 23.2 23 ...</code></pre>
+<pre class="r"><code>is.unsorted(women$height)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>is.unsorted(women$weight)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<pre class="r"><code>women$bmi&lt;-(women$weight/women$height^2)*703
+order(women$bmi)</code></pre>
+<pre><code>##  [1] 13 12 14 11 10 15  9  8  7  6  5  4  3  2  1</code></pre>
+<ul>
+<li>Crea los siguientes vectores:</li>
+</ul>
+<p>Box office Star Wars: In Millions (!) First element: US, Second element:Non-US</p>
+<pre class="r"><code>new_hope = c(460.998007, 314.4)
+empire_strikes = c(290.475067, 247.9)
+return_jedi = c(309.306177, 165.8)</code></pre>
+<ul>
+<li>Construye la matriz star_wars_matrix con esos vectores</li>
+</ul>
+<pre class="r"><code>star_wars_matrix&lt;-rbind(new_hope,empire_strikes,return_jedi )
+star_wars_matrix</code></pre>
+<pre><code>##                    [,1]  [,2]
+## new_hope       460.9980 314.4
+## empire_strikes 290.4751 247.9
+## return_jedi    309.3062 165.8</code></pre>
+<ul>
+<li>Añádele nombres a las columnas y filas de la matriz según las descripciones dadas anteriormente de los datos</li>
+</ul>
+<pre class="r"><code>colnames(star_wars_matrix)&lt;-c(&quot;US&quot;,&quot;Non-US&quot;)
+star_wars_matrix</code></pre>
+<pre><code>##                      US Non-US
+## new_hope       460.9980  314.4
+## empire_strikes 290.4751  247.9
+## return_jedi    309.3062  165.8</code></pre>
+<ul>
+<li>Calcula las ganacias mundiales de cada película y guardalas en un vector que se llame worldwide_vector.</li>
+</ul>
+<pre class="r"><code>worldwide_vector&lt;-rowSums(star_wars_matrix)</code></pre>
+<ul>
+<li>Añade éste último vector como una columna nueva a la matriz star_wars_matrix y asigna el resultado a all_wars_matrix. Usa para ello la función cbind().</li>
+</ul>
+<pre class="r"><code>all_wars_matrix&lt;-cbind(star_wars_matrix,worldwide_vector)
+all_wars_matrix</code></pre>
+<pre><code>##                      US Non-US worldwide_vector
+## new_hope       460.9980  314.4         775.3980
+## empire_strikes 290.4751  247.9         538.3751
+## return_jedi    309.3062  165.8         475.1062</code></pre>
+<ul>
+<li>Calcula las ganancias totales en USA y fuera de USA para las tres películas. Puedes usar para ello la función colSums()</li>
+</ul>
+<pre class="r"><code>colSums(all_wars_matrix[,1:2])</code></pre>
+<pre><code>##       US   Non-US 
+## 1060.779  728.100</code></pre>
+<ul>
+<li>Calcula la media de ganancias para todas las películas fuera de los estados unidos. Asigna esa media la variable non_us_all.</li>
+</ul>
+<pre class="r"><code>non_us_all&lt;-mean(all_wars_matrix[,2])</code></pre>
+<ul>
+<li>Haz lo mismo pero solo para las dos primeras películas . Asigna el resultado a la variable non_us_some.</li>
+</ul>
+<pre class="r"><code>non_us_some&lt;-mean(all_wars_matrix[1:2,2])</code></pre>
+<ul>
+<li>Calcula cuantos visitantes hubo para cada película en cada área geográfica. Ya tienes las ganancias totales en star_wars_matrix. Asume que el precio de las entradas es de cinco euros/dólares.</li>
+</ul>
+<pre class="r"><code>star_wars_matrix/5</code></pre>
+<pre><code>##                      US Non-US
+## new_hope       92.19960  62.88
+## empire_strikes 58.09501  49.58
+## return_jedi    61.86124  33.16</code></pre>
+<ul>
+<li>Calcula la media de visitantes en territorio USA y en territorio noUS</li>
+</ul>
+<pre class="r"><code>mean(star_wars_matrix[,1]/5)</code></pre>
+<pre><code>## [1] 70.71862</code></pre>
+<pre class="r"><code>mean(star_wars_matrix[,2]/5)</code></pre>
+<pre><code>## [1] 48.54</code></pre>
+</div>
+<div id="subsetting-matrices-y-arrays" class="section level2">
+<h2>2.2 Subsetting matrices y arrays</h2>
+<ul>
+<li>Crea un array i &lt;- array(c(1:10),dim=c(5,2)). ¿Que información te dan los siguientes comandos?</li>
+</ul>
+<pre class="r"><code>i &lt;- array(c(1:10),dim=c(5,2))
+
+dim(i)</code></pre>
+<pre><code>## [1] 5 2</code></pre>
+<pre class="r"><code>#Nos dice el número de filas y columnas
+
+nrow(i) </code></pre>
+<pre><code>## [1] 5</code></pre>
+<pre class="r"><code>#Nos dice el número de filas
+
+ncol(i) </code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>#Nos dice el número de columnas</code></pre>
+<ul>
+<li>Crea un array de dimensiones 5 filas y dos columnas y rellénalo con valores del 1-5 y del 5 al 1</li>
+</ul>
+<pre class="r"><code>x &lt;- array(c(c(1:5),c(5:1)), dim = c(5,2))</code></pre>
+<ul>
+<li>¿Qué hace el comando x[i]? ¿y el comando x[i] &lt;- 0? Comprueba que tienes en x antes.</li>
+</ul>
+<pre class="r"><code>x</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    5
+## [2,]    2    4
+## [3,]    3    3
+## [4,]    4    2
+## [5,]    5    1</code></pre>
+<pre class="r"><code>x[6]</code></pre>
+<pre><code>## [1] 5</code></pre>
+<p>Devuelve el elemento i del array pero lo hace por columnas. El otro comando asigna el valor que pasamos a la derecha de &lt;-, en este caso 0, al elemento i del array.</p>
+<ul>
+<li>Descárgate el fichero array_datos.txt de PRADO (Datos/) e impórtalo en tu work space de R teniendo en cuenta que es un texto tabulado. Después crea un documento con los mismos datos pero en formato csv en vez de tab separated.</li>
+</ul>
+<pre class="r"><code>array_datos&lt;-read.table(&quot;./datasets/array_datos.txt&quot;)
+array_datos</code></pre>
+<pre><code>##   edad peso altura
+## 1   20   65    174
+## 2   22   70    180
+## 3   19   68    170</code></pre>
+<pre class="r"><code>write.csv(array_datos, file=&quot;./datasets/array_datos2.csv&quot;)</code></pre>
+</div>
+<div id="factors" class="section level2">
+<h2>2.3 Factors</h2>
+<ul>
+<li>Dado x = c(1, 2, 3, 3, 5, 3, 2, 4, NA), ¿cuáles son los levels de factor(x)?</li>
+</ul>
+<pre class="r"><code>x = c(1, 2, 3, 3, 5, 3, 2, 4, NA) 
+
+factor(x)</code></pre>
+<pre><code>## [1] 1    2    3    3    5    3    2    4    &lt;NA&gt;
+## Levels: 1 2 3 4 5</code></pre>
+<p>Los NA no se tiene como posibles valores del factor, por lo que los niveles de este serán 1, 2, 3, 4 y 5.</p>
+<ul>
+<li>Dado x &lt;- c(11, 22, 47, 47, 11, 47, 11) y la ejecución de la sentencia factor(x, levels=c(11, 22, 47), ordered=TRUE)¿cuál es el cuarto elemento de la salida?</li>
+</ul>
+<pre class="r"><code>x &lt;- c(11, 22, 47, 47, 11, 47, 11)
+factor(x, levels=c(11, 22, 47), ordered=TRUE)</code></pre>
+<pre><code>## [1] 11 22 47 47 11 47 11
+## Levels: 11 &lt; 22 &lt; 47</code></pre>
+<p>No hay cuarto elemento, ya que solo tenemos tres posibles valores para el factor</p>
+<ul>
+<li>Para el factor z &lt;- c(“p”, “a” , “g”, “t”, “b”), reemplaza el tercer elemento de z por “b”.</li>
+</ul>
+<pre class="r"><code>z &lt;- c(&quot;p&quot;, &quot;a&quot; , &quot;g&quot;, &quot;t&quot;, &quot;b&quot;)
+z[3] &lt;- &quot;b&quot;
+z</code></pre>
+<pre><code>## [1] &quot;p&quot; &quot;a&quot; &quot;b&quot; &quot;t&quot; &quot;b&quot;</code></pre>
+<ul>
+<li>Dado z &lt;- factor(c(“p”, “q”, “p”, “r”, “q”)) escribe una expresión de R que cambie el level “p” a “w”</li>
+</ul>
+<pre class="r"><code>z &lt;- factor(c(&quot;p&quot;, &quot;q&quot;, &quot;p&quot;, &quot;r&quot;, &quot;q&quot;))
+z</code></pre>
+<pre><code>## [1] p q p r q
+## Levels: p q r</code></pre>
+<pre class="r"><code>levels(z)[1] &lt;- &quot;w&quot;
+z</code></pre>
+<pre><code>## [1] w q w r q
+## Levels: w q r</code></pre>
+<ul>
+<li>Usa el dataset “iris” Escribe la expresión necesaria para convertir la variable “Sepal.Length” en un factor con cinco niveles (levels) .</li>
+</ul>
+<pre class="r"><code>irisfactor &lt;- factor(cut(iris$Sepal.Length, b=5))
+irisfactor</code></pre>
+<pre><code>##   [1] (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (4.3,5.02] 
+##   [6] (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (4.3,5.02] 
+##  [11] (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (5.74,6.46]
+##  [16] (5.02,5.74] (5.02,5.74] (5.02,5.74] (5.02,5.74] (5.02,5.74]
+##  [21] (5.02,5.74] (5.02,5.74] (4.3,5.02]  (5.02,5.74] (4.3,5.02] 
+##  [26] (4.3,5.02]  (4.3,5.02]  (5.02,5.74] (5.02,5.74] (4.3,5.02] 
+##  [31] (4.3,5.02]  (5.02,5.74] (5.02,5.74] (5.02,5.74] (4.3,5.02] 
+##  [36] (4.3,5.02]  (5.02,5.74] (4.3,5.02]  (4.3,5.02]  (5.02,5.74]
+##  [41] (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (4.3,5.02]  (5.02,5.74]
+##  [46] (4.3,5.02]  (5.02,5.74] (4.3,5.02]  (5.02,5.74] (4.3,5.02] 
+##  [51] (6.46,7.18] (5.74,6.46] (6.46,7.18] (5.02,5.74] (6.46,7.18]
+##  [56] (5.02,5.74] (5.74,6.46] (4.3,5.02]  (6.46,7.18] (5.02,5.74]
+##  [61] (4.3,5.02]  (5.74,6.46] (5.74,6.46] (5.74,6.46] (5.02,5.74]
+##  [66] (6.46,7.18] (5.02,5.74] (5.74,6.46] (5.74,6.46] (5.02,5.74]
+##  [71] (5.74,6.46] (5.74,6.46] (5.74,6.46] (5.74,6.46] (5.74,6.46]
+##  [76] (6.46,7.18] (6.46,7.18] (6.46,7.18] (5.74,6.46] (5.02,5.74]
+##  [81] (5.02,5.74] (5.02,5.74] (5.74,6.46] (5.74,6.46] (5.02,5.74]
+##  [86] (5.74,6.46] (6.46,7.18] (5.74,6.46] (5.02,5.74] (5.02,5.74]
+##  [91] (5.02,5.74] (5.74,6.46] (5.74,6.46] (4.3,5.02]  (5.02,5.74]
+##  [96] (5.02,5.74] (5.02,5.74] (5.74,6.46] (5.02,5.74] (5.02,5.74]
+## [101] (5.74,6.46] (5.74,6.46] (6.46,7.18] (5.74,6.46] (6.46,7.18]
+## [106] (7.18,7.9]  (4.3,5.02]  (7.18,7.9]  (6.46,7.18] (7.18,7.9] 
+## [111] (6.46,7.18] (5.74,6.46] (6.46,7.18] (5.02,5.74] (5.74,6.46]
+## [116] (5.74,6.46] (6.46,7.18] (7.18,7.9]  (7.18,7.9]  (5.74,6.46]
+## [121] (6.46,7.18] (5.02,5.74] (7.18,7.9]  (5.74,6.46] (6.46,7.18]
+## [126] (7.18,7.9]  (5.74,6.46] (5.74,6.46] (5.74,6.46] (7.18,7.9] 
+## [131] (7.18,7.9]  (7.18,7.9]  (5.74,6.46] (5.74,6.46] (5.74,6.46]
+## [136] (7.18,7.9]  (5.74,6.46] (5.74,6.46] (5.74,6.46] (6.46,7.18]
+## [141] (6.46,7.18] (6.46,7.18] (5.74,6.46] (6.46,7.18] (6.46,7.18]
+## [146] (6.46,7.18] (5.74,6.46] (6.46,7.18] (5.74,6.46] (5.74,6.46]
+## Levels: (4.3,5.02] (5.02,5.74] (5.74,6.46] (6.46,7.18] (7.18,7.9]</code></pre>
+<ul>
+<li>El factor responses se define como:</li>
+</ul>
+<p><em>responses &lt;- factor(c(“Agree”, “Agree”, “Strongly Agree”, “Disagree”, “Agree”)) </em></p>
+<p>Sin embargo nos damos cuenta que tiene un nuevo nivel, “Strongly Disagree”, que no estaba presente cuando se creó. Añade el nuevo nivel al factor y conviértelo en un factor ordenado de la siguiente forma:</p>
+<p><em>Levels: Strongly Agree &lt; Agree &lt; Disagree &lt; Strongly Disagree</em></p>
+<pre class="r"><code>responses &lt;- factor(c(&quot;Agree&quot;, &quot;Agree&quot;, &quot;Strongly Agree&quot;, &quot;Disagree&quot;, &quot;Agree&quot;))
+levels(responses) = c(levels(responses), &quot;Strongly disagree&quot;)
+responses = factor(responses, levels(responses)[c(3,1:2,4)], ordered = TRUE)
+responses</code></pre>
+<pre><code>## [1] Agree          Agree          Strongly Agree Disagree      
+## [5] Agree         
+## Levels: Strongly Agree &lt; Agree &lt; Disagree &lt; Strongly disagree</code></pre>
+<ul>
+<li>Dado el factor:</li>
+</ul>
+<p><em>x &lt;- factor(c(“high”, “low”, “medium”, “high”, “high”, “low”, “medium”))</em></p>
+<p>Escribe la expresión en R que permita dar valores numéricos únicos para los distintos niveles (levels) de x según el siguiente esquema:</p>
+<p><em>level high =&gt; value 1 level low =&gt; value 2 level medium =&gt; value 3</em></p>
+<pre class="r"><code>x &lt;- factor(c(&quot;high&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;high&quot;, &quot;low&quot;, &quot;medium&quot;), levels=c(&quot;high&quot;,&quot;low&quot;,&quot;medium&quot;),labels=c(1,2,3))
+unique(x)</code></pre>
+<pre><code>## [1] 1 2 3
+## Levels: 1 2 3</code></pre>
+</div>
+</div>
+<div id="acceso-y-seleccion-de-secciones-de-un-data-frames" class="section level1">
+<h1>2.4 Acceso y selección de secciones de un data frames</h1>
+<p>Vamos a trabajar con un ejemplo que viene por defecto en la instalación de R USArrests. Este data frame contiene la información para cada estado Americano de las tasas de criminales (por 100.000 habitantes). Los datos de las columnas se refieren a Asesinatos, violaciones yporcentaje de la población que vive en áreas urbanas. Los datos son de 1973. Contesta a las siguientes preguntas sobre los datos:</p>
+<ol style="list-style-type: decimal">
+<li>Las dimensiones del dataframe</li>
+<li>La longitud del dataframe (filas o columnas)</li>
+<li>Numero de columnas</li>
+</ol>
+<pre class="r"><code>USArrests</code></pre>
+<pre><code>##                Murder Assault UrbanPop Rape
+## Alabama          13.2     236       58 21.2
+## Alaska           10.0     263       48 44.5
+## Arizona           8.1     294       80 31.0
+## Arkansas          8.8     190       50 19.5
+## California        9.0     276       91 40.6
+## Colorado          7.9     204       78 38.7
+## Connecticut       3.3     110       77 11.1
+## Delaware          5.9     238       72 15.8
+## Florida          15.4     335       80 31.9
+## Georgia          17.4     211       60 25.8
+## Hawaii            5.3      46       83 20.2
+## Idaho             2.6     120       54 14.2
+## Illinois         10.4     249       83 24.0
+## Indiana           7.2     113       65 21.0
+## Iowa              2.2      56       57 11.3
+## Kansas            6.0     115       66 18.0
+## Kentucky          9.7     109       52 16.3
+## Louisiana        15.4     249       66 22.2
+## Maine             2.1      83       51  7.8
+## Maryland         11.3     300       67 27.8
+## Massachusetts     4.4     149       85 16.3
+## Michigan         12.1     255       74 35.1
+## Minnesota         2.7      72       66 14.9
+## Mississippi      16.1     259       44 17.1
+## Missouri          9.0     178       70 28.2
+## Montana           6.0     109       53 16.4
+## Nebraska          4.3     102       62 16.5
+## Nevada           12.2     252       81 46.0
+## New Hampshire     2.1      57       56  9.5
+## New Jersey        7.4     159       89 18.8
+## New Mexico       11.4     285       70 32.1
+## New York         11.1     254       86 26.1
+## North Carolina   13.0     337       45 16.1
+## North Dakota      0.8      45       44  7.3
+## Ohio              7.3     120       75 21.4
+## Oklahoma          6.6     151       68 20.0
+## Oregon            4.9     159       67 29.3
+## Pennsylvania      6.3     106       72 14.9
+## Rhode Island      3.4     174       87  8.3
+## South Carolina   14.4     279       48 22.5
+## South Dakota      3.8      86       45 12.8
+## Tennessee        13.2     188       59 26.9
+## Texas            12.7     201       80 25.5
+## Utah              3.2     120       80 22.9
+## Vermont           2.2      48       32 11.2
+## Virginia          8.5     156       63 20.7
+## Washington        4.0     145       73 26.2
+## West Virginia     5.7      81       39  9.3
+## Wisconsin         2.6      53       66 10.8
+## Wyoming           6.8     161       60 15.6</code></pre>
+<pre class="r"><code>dim.data.frame(USArrests) # 50 * 4</code></pre>
+<pre><code>## [1] 50  4</code></pre>
+<pre class="r"><code>nrow(USArrests) # 50</code></pre>
+<pre><code>## [1] 50</code></pre>
+<pre class="r"><code>ncol(USArrests) # 4</code></pre>
+<pre><code>## [1] 4</code></pre>
+<ul>
+<li>¿Cómo calcularías el número de filas?</li>
+</ul>
+<pre class="r"><code>nrow(USArrests)  </code></pre>
+<pre><code>## [1] 50</code></pre>
+<ul>
+<li>Obtén el nombre de las filas y las columnas para este data frame</li>
+</ul>
+<pre class="r"><code>row.names(USArrests)</code></pre>
+<pre><code>##  [1] &quot;Alabama&quot;        &quot;Alaska&quot;         &quot;Arizona&quot;        &quot;Arkansas&quot;      
+##  [5] &quot;California&quot;     &quot;Colorado&quot;       &quot;Connecticut&quot;    &quot;Delaware&quot;      
+##  [9] &quot;Florida&quot;        &quot;Georgia&quot;        &quot;Hawaii&quot;         &quot;Idaho&quot;         
+## [13] &quot;Illinois&quot;       &quot;Indiana&quot;        &quot;Iowa&quot;           &quot;Kansas&quot;        
+## [17] &quot;Kentucky&quot;       &quot;Louisiana&quot;      &quot;Maine&quot;          &quot;Maryland&quot;      
+## [21] &quot;Massachusetts&quot;  &quot;Michigan&quot;       &quot;Minnesota&quot;      &quot;Mississippi&quot;   
+## [25] &quot;Missouri&quot;       &quot;Montana&quot;        &quot;Nebraska&quot;       &quot;Nevada&quot;        
+## [29] &quot;New Hampshire&quot;  &quot;New Jersey&quot;     &quot;New Mexico&quot;     &quot;New York&quot;      
+## [33] &quot;North Carolina&quot; &quot;North Dakota&quot;   &quot;Ohio&quot;           &quot;Oklahoma&quot;      
+## [37] &quot;Oregon&quot;         &quot;Pennsylvania&quot;   &quot;Rhode Island&quot;   &quot;South Carolina&quot;
+## [41] &quot;South Dakota&quot;   &quot;Tennessee&quot;      &quot;Texas&quot;          &quot;Utah&quot;          
+## [45] &quot;Vermont&quot;        &quot;Virginia&quot;       &quot;Washington&quot;     &quot;West Virginia&quot; 
+## [49] &quot;Wisconsin&quot;      &quot;Wyoming&quot;</code></pre>
+<pre class="r"><code>colnames(USArrests)</code></pre>
+<pre><code>## [1] &quot;Murder&quot;   &quot;Assault&quot;  &quot;UrbanPop&quot; &quot;Rape&quot;</code></pre>
+<ul>
+<li>Échale un vistazo a los datos, por ejemplo a las seis primeras filas</li>
+</ul>
+<pre class="r"><code>head(USArrests, 6)</code></pre>
+<pre><code>##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6
+## Colorado      7.9     204       78 38.7</code></pre>
+<p>*Ordena de forma decreciente las filas de nuestro data frame según el porcentaje de población en el área urbana. Para ello investiga la función order () y sus parámetros.</p>
+<pre class="r"><code>USArrests[order(USArrests$UrbanPop, decreasing = TRUE),]</code></pre>
+<pre><code>##                Murder Assault UrbanPop Rape
+## California        9.0     276       91 40.6
+## New Jersey        7.4     159       89 18.8
+## Rhode Island      3.4     174       87  8.3
+## New York         11.1     254       86 26.1
+## Massachusetts     4.4     149       85 16.3
+## Hawaii            5.3      46       83 20.2
+## Illinois         10.4     249       83 24.0
+## Nevada           12.2     252       81 46.0
+## Arizona           8.1     294       80 31.0
+## Florida          15.4     335       80 31.9
+## Texas            12.7     201       80 25.5
+## Utah              3.2     120       80 22.9
+## Colorado          7.9     204       78 38.7
+## Connecticut       3.3     110       77 11.1
+## Ohio              7.3     120       75 21.4
+## Michigan         12.1     255       74 35.1
+## Washington        4.0     145       73 26.2
+## Delaware          5.9     238       72 15.8
+## Pennsylvania      6.3     106       72 14.9
+## Missouri          9.0     178       70 28.2
+## New Mexico       11.4     285       70 32.1
+## Oklahoma          6.6     151       68 20.0
+## Maryland         11.3     300       67 27.8
+## Oregon            4.9     159       67 29.3
+## Kansas            6.0     115       66 18.0
+## Louisiana        15.4     249       66 22.2
+## Minnesota         2.7      72       66 14.9
+## Wisconsin         2.6      53       66 10.8
+## Indiana           7.2     113       65 21.0
+## Virginia          8.5     156       63 20.7
+## Nebraska          4.3     102       62 16.5
+## Georgia          17.4     211       60 25.8
+## Wyoming           6.8     161       60 15.6
+## Tennessee        13.2     188       59 26.9
+## Alabama          13.2     236       58 21.2
+## Iowa              2.2      56       57 11.3
+## New Hampshire     2.1      57       56  9.5
+## Idaho             2.6     120       54 14.2
+## Montana           6.0     109       53 16.4
+## Kentucky          9.7     109       52 16.3
+## Maine             2.1      83       51  7.8
+## Arkansas          8.8     190       50 19.5
+## Alaska           10.0     263       48 44.5
+## South Carolina   14.4     279       48 22.5
+## North Carolina   13.0     337       45 16.1
+## South Dakota      3.8      86       45 12.8
+## Mississippi      16.1     259       44 17.1
+## North Dakota      0.8      45       44  7.3
+## West Virginia     5.7      81       39  9.3
+## Vermont           2.2      48       32 11.2</code></pre>
+<ul>
+<li>¿Podrías añadir un segundo criterio de orden?, ¿cómo?</li>
+</ul>
+<pre class="r"><code>USArrests[order(c(USArrests$UrbanPop,USArrests$Assault), decreasing = TRUE),]  </code></pre>
+<pre><code>##                Murder Assault UrbanPop Rape
+## NA                 NA      NA       NA   NA
+## NA.1               NA      NA       NA   NA
+## NA.2               NA      NA       NA   NA
+## NA.3               NA      NA       NA   NA
+## NA.4               NA      NA       NA   NA
+## NA.5               NA      NA       NA   NA
+## NA.6               NA      NA       NA   NA
+## NA.7               NA      NA       NA   NA
+## NA.8               NA      NA       NA   NA
+## NA.9               NA      NA       NA   NA
+## NA.10              NA      NA       NA   NA
+## NA.11              NA      NA       NA   NA
+## NA.12              NA      NA       NA   NA
+## NA.13              NA      NA       NA   NA
+## NA.14              NA      NA       NA   NA
+## NA.15              NA      NA       NA   NA
+## NA.16              NA      NA       NA   NA
+## NA.17              NA      NA       NA   NA
+## NA.18              NA      NA       NA   NA
+## NA.19              NA      NA       NA   NA
+## NA.20              NA      NA       NA   NA
+## NA.21              NA      NA       NA   NA
+## NA.22              NA      NA       NA   NA
+## NA.23              NA      NA       NA   NA
+## NA.24              NA      NA       NA   NA
+## NA.25              NA      NA       NA   NA
+## NA.26              NA      NA       NA   NA
+## NA.27              NA      NA       NA   NA
+## NA.28              NA      NA       NA   NA
+## NA.29              NA      NA       NA   NA
+## NA.30              NA      NA       NA   NA
+## NA.31              NA      NA       NA   NA
+## NA.32              NA      NA       NA   NA
+## NA.33              NA      NA       NA   NA
+## NA.34              NA      NA       NA   NA
+## NA.35              NA      NA       NA   NA
+## NA.36              NA      NA       NA   NA
+## NA.37              NA      NA       NA   NA
+## NA.38              NA      NA       NA   NA
+## NA.39              NA      NA       NA   NA
+## California        9.0     276       91 40.6
+## New Jersey        7.4     159       89 18.8
+## Rhode Island      3.4     174       87  8.3
+## New York         11.1     254       86 26.1
+## NA.40              NA      NA       NA   NA
+## Massachusetts     4.4     149       85 16.3
+## Hawaii            5.3      46       83 20.2
+## Illinois         10.4     249       83 24.0
+## NA.41              NA      NA       NA   NA
+## Nevada           12.2     252       81 46.0
+## NA.42              NA      NA       NA   NA
+## Arizona           8.1     294       80 31.0
+## Florida          15.4     335       80 31.9
+## Texas            12.7     201       80 25.5
+## Utah              3.2     120       80 22.9
+## Colorado          7.9     204       78 38.7
+## Connecticut       3.3     110       77 11.1
+## Ohio              7.3     120       75 21.4
+## Michigan         12.1     255       74 35.1
+## Washington        4.0     145       73 26.2
+## Delaware          5.9     238       72 15.8
+## Pennsylvania      6.3     106       72 14.9
+## NA.43              NA      NA       NA   NA
+## Missouri          9.0     178       70 28.2
+## New Mexico       11.4     285       70 32.1
+## Oklahoma          6.6     151       68 20.0
+## Maryland         11.3     300       67 27.8
+## Oregon            4.9     159       67 29.3
+## Kansas            6.0     115       66 18.0
+## Louisiana        15.4     249       66 22.2
+## Minnesota         2.7      72       66 14.9
+## Wisconsin         2.6      53       66 10.8
+## Indiana           7.2     113       65 21.0
+## Virginia          8.5     156       63 20.7
+## Nebraska          4.3     102       62 16.5
+## Georgia          17.4     211       60 25.8
+## Wyoming           6.8     161       60 15.6
+## Tennessee        13.2     188       59 26.9
+## Alabama          13.2     236       58 21.2
+## Iowa              2.2      56       57 11.3
+## NA.44              NA      NA       NA   NA
+## New Hampshire     2.1      57       56  9.5
+## NA.45              NA      NA       NA   NA
+## Idaho             2.6     120       54 14.2
+## Montana           6.0     109       53 16.4
+## NA.46              NA      NA       NA   NA
+## Kentucky          9.7     109       52 16.3
+## Maine             2.1      83       51  7.8
+## Arkansas          8.8     190       50 19.5
+## Alaska           10.0     263       48 44.5
+## South Carolina   14.4     279       48 22.5
+## NA.47              NA      NA       NA   NA
+## NA.48              NA      NA       NA   NA
+## North Carolina   13.0     337       45 16.1
+## South Dakota      3.8      86       45 12.8
+## NA.49              NA      NA       NA   NA
+## Mississippi      16.1     259       44 17.1
+## North Dakota      0.8      45       44  7.3
+## West Virginia     5.7      81       39  9.3
+## Vermont           2.2      48       32 11.2</code></pre>
+<ul>
+<li>Muestra por pantalla la columna con los datos de asesinato</li>
+</ul>
+<pre class="r"><code>USArrests$Murder</code></pre>
+<pre><code>##  [1] 13.2 10.0  8.1  8.8  9.0  7.9  3.3  5.9 15.4 17.4  5.3  2.6 10.4  7.2
+## [15]  2.2  6.0  9.7 15.4  2.1 11.3  4.4 12.1  2.7 16.1  9.0  6.0  4.3 12.2
+## [29]  2.1  7.4 11.4 11.1 13.0  0.8  7.3  6.6  4.9  6.3  3.4 14.4  3.8 13.2
+## [43] 12.7  3.2  2.2  8.5  4.0  5.7  2.6  6.8</code></pre>
+<ul>
+<li>Muestra las tasas de asesinato para el segundo, tercer y cuarto estado</li>
+</ul>
+<pre class="r"><code>USArrests$Murder[2:4]</code></pre>
+<pre><code>## [1] 10.0  8.1  8.8</code></pre>
+<ul>
+<li>Muestra las primeras cinco filas de todas las columnas</li>
+</ul>
+<pre class="r"><code>USArrests[1:5,]</code></pre>
+<pre><code>##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6</code></pre>
+<ul>
+<li>Muestra todas las filas para las dos primeras columnas</li>
+</ul>
+<pre class="r"><code>USArrests[,1:2]</code></pre>
+<pre><code>##                Murder Assault
+## Alabama          13.2     236
+## Alaska           10.0     263
+## Arizona           8.1     294
+## Arkansas          8.8     190
+## California        9.0     276
+## Colorado          7.9     204
+## Connecticut       3.3     110
+## Delaware          5.9     238
+## Florida          15.4     335
+## Georgia          17.4     211
+## Hawaii            5.3      46
+## Idaho             2.6     120
+## Illinois         10.4     249
+## Indiana           7.2     113
+## Iowa              2.2      56
+## Kansas            6.0     115
+## Kentucky          9.7     109
+## Louisiana        15.4     249
+## Maine             2.1      83
+## Maryland         11.3     300
+## Massachusetts     4.4     149
+## Michigan         12.1     255
+## Minnesota         2.7      72
+## Mississippi      16.1     259
+## Missouri          9.0     178
+## Montana           6.0     109
+## Nebraska          4.3     102
+## Nevada           12.2     252
+## New Hampshire     2.1      57
+## New Jersey        7.4     159
+## New Mexico       11.4     285
+## New York         11.1     254
+## North Carolina   13.0     337
+## North Dakota      0.8      45
+## Ohio              7.3     120
+## Oklahoma          6.6     151
+## Oregon            4.9     159
+## Pennsylvania      6.3     106
+## Rhode Island      3.4     174
+## South Carolina   14.4     279
+## South Dakota      3.8      86
+## Tennessee        13.2     188
+## Texas            12.7     201
+## Utah              3.2     120
+## Vermont           2.2      48
+## Virginia          8.5     156
+## Washington        4.0     145
+## West Virginia     5.7      81
+## Wisconsin         2.6      53
+## Wyoming           6.8     161</code></pre>
+<ul>
+<li>Muestra todas las filas de las columnas 1 y 3</li>
+</ul>
+<pre class="r"><code>USArrests[,c(1,3)]</code></pre>
+<pre><code>##                Murder UrbanPop
+## Alabama          13.2       58
+## Alaska           10.0       48
+## Arizona           8.1       80
+## Arkansas          8.8       50
+## California        9.0       91
+## Colorado          7.9       78
+## Connecticut       3.3       77
+## Delaware          5.9       72
+## Florida          15.4       80
+## Georgia          17.4       60
+## Hawaii            5.3       83
+## Idaho             2.6       54
+## Illinois         10.4       83
+## Indiana           7.2       65
+## Iowa              2.2       57
+## Kansas            6.0       66
+## Kentucky          9.7       52
+## Louisiana        15.4       66
+## Maine             2.1       51
+## Maryland         11.3       67
+## Massachusetts     4.4       85
+## Michigan         12.1       74
+## Minnesota         2.7       66
+## Mississippi      16.1       44
+## Missouri          9.0       70
+## Montana           6.0       53
+## Nebraska          4.3       62
+## Nevada           12.2       81
+## New Hampshire     2.1       56
+## New Jersey        7.4       89
+## New Mexico       11.4       70
+## New York         11.1       86
+## North Carolina   13.0       45
+## North Dakota      0.8       44
+## Ohio              7.3       75
+## Oklahoma          6.6       68
+## Oregon            4.9       67
+## Pennsylvania      6.3       72
+## Rhode Island      3.4       87
+## South Carolina   14.4       48
+## South Dakota      3.8       45
+## Tennessee        13.2       59
+## Texas            12.7       80
+## Utah              3.2       80
+## Vermont           2.2       32
+## Virginia          8.5       63
+## Washington        4.0       73
+## West Virginia     5.7       39
+## Wisconsin         2.6       66
+## Wyoming           6.8       60</code></pre>
+<ul>
+<li>Muestra solo las primeras cinco filas de las columnas 1 y 2</li>
+</ul>
+<pre class="r"><code>USArrests[1:5,1:2]</code></pre>
+<pre><code>##            Murder Assault
+## Alabama      13.2     236
+## Alaska       10.0     263
+## Arizona       8.1     294
+## Arkansas      8.8     190
+## California    9.0     276</code></pre>
+<ul>
+<li>Extrae las filas para el índice Murder</li>
+</ul>
+<pre class="r"><code>USArrests$Murder</code></pre>
+<pre><code>##  [1] 13.2 10.0  8.1  8.8  9.0  7.9  3.3  5.9 15.4 17.4  5.3  2.6 10.4  7.2
+## [15]  2.2  6.0  9.7 15.4  2.1 11.3  4.4 12.1  2.7 16.1  9.0  6.0  4.3 12.2
+## [29]  2.1  7.4 11.4 11.1 13.0  0.8  7.3  6.6  4.9  6.3  3.4 14.4  3.8 13.2
+## [43] 12.7  3.2  2.2  8.5  4.0  5.7  2.6  6.8</code></pre>
+<ul>
+<li>¿Que estado tiene la menor tasa de asesinatos? ¿qué línea contiene esa información?, obtén esa información</li>
+</ul>
+<pre class="r"><code>minorMurder = USArrests[order(USArrests$Murder, decreasing = TRUE),]
+minorMurder[nrow(minorMurder),]</code></pre>
+<pre><code>##              Murder Assault UrbanPop Rape
+## North Dakota    0.8      45       44  7.3</code></pre>
+<p>*¿Que estados tienen una tasa inferior al 4%?, obtén esa información</p>
+<pre class="r"><code>minorMurder[minorMurder$Murder&lt;4,]</code></pre>
+<pre><code>##               Murder Assault UrbanPop Rape
+## South Dakota     3.8      86       45 12.8
+## Rhode Island     3.4     174       87  8.3
+## Connecticut      3.3     110       77 11.1
+## Utah             3.2     120       80 22.9
+## Minnesota        2.7      72       66 14.9
+## Idaho            2.6     120       54 14.2
+## Wisconsin        2.6      53       66 10.8
+## Iowa             2.2      56       57 11.3
+## Vermont          2.2      48       32 11.2
+## Maine            2.1      83       51  7.8
+## New Hampshire    2.1      57       56  9.5
+## North Dakota     0.8      45       44  7.3</code></pre>
+<ul>
+<li>¿Que estados estan en el cuartil superior (75) en lo que a poblacion en zonas urbanas se refiere?</li>
+</ul>
+<pre class="r"><code>rownames(USArrests[USArrests[,&quot;UrbanPop&quot;]&gt;quantile(USArrests[,&quot;UrbanPop&quot;],.75),])</code></pre>
+<pre><code>##  [1] &quot;Arizona&quot;       &quot;California&quot;    &quot;Colorado&quot;      &quot;Florida&quot;      
+##  [5] &quot;Hawaii&quot;        &quot;Illinois&quot;      &quot;Massachusetts&quot; &quot;Nevada&quot;       
+##  [9] &quot;New Jersey&quot;    &quot;New York&quot;      &quot;Rhode Island&quot;  &quot;Texas&quot;        
+## [13] &quot;Utah&quot;</code></pre>
+<ul>
+<li>Vamos a trabajar con otro dataframe. Descarga el fichero student.txt de la plataforma PRADO, almacena la información en una variable llamada “students”. Ten en cuenta que los datos son tab-delimited y tienen un texto para cada columna. Comprueba que R ha leído correctamente el fichero imprimiendo el objeto en la pantalla.</li>
+</ul>
+<pre class="r"><code>students&lt;-read.table(&quot;./datasets/student.txt&quot;, header = TRUE)
+students</code></pre>
+<pre><code>##    height shoesize gender population
+## 1     181       44   male     kuopio
+## 2     160       38 female     kuopio
+## 3     174       42 female     kuopio
+## 4     170       43   male     kuopio
+## 5     172       43   male     kuopio
+## 6     165       39 female     kuopio
+## 7     161       38 female     kuopio
+## 8     167       38 female    tampere
+## 9     164       39 female    tampere
+## 10    166       38 female    tampere
+## 11    162       37 female    tampere
+## 12    158       36 female    tampere
+## 13    175       42   male    tampere
+## 14    181       44   male    tampere
+## 15    180       43   male    tampere
+## 16    177       43   male    tampere
+## 17    173       41   male    tampere</code></pre>
+<ul>
+<li>Imprime solo los nombres de la columnas</li>
+</ul>
+<pre class="r"><code>colnames(students)</code></pre>
+<pre><code>## [1] &quot;height&quot;     &quot;shoesize&quot;   &quot;gender&quot;     &quot;population&quot;</code></pre>
+<ul>
+<li>Llama a la columna height solo</li>
+</ul>
+<pre class="r"><code>students$height</code></pre>
+<pre><code>##  [1] 181 160 174 170 172 165 161 167 164 166 162 158 175 181 180 177 173</code></pre>
+<ul>
+<li>¿Cuantas observaciones hay en cada grupo?. Utiliza la función table(). Este commando se puede utilizar para crear tablas cruzadas (cross-tabulations)</li>
+</ul>
+<pre class="r"><code>table(students)</code></pre>
+<pre><code>## , , gender = female, population = kuopio
+## 
+##       shoesize
+## height 36 37 38 39 41 42 43 44
+##    158  0  0  0  0  0  0  0  0
+##    160  0  0  1  0  0  0  0  0
+##    161  0  0  1  0  0  0  0  0
+##    162  0  0  0  0  0  0  0  0
+##    164  0  0  0  0  0  0  0  0
+##    165  0  0  0  1  0  0  0  0
+##    166  0  0  0  0  0  0  0  0
+##    167  0  0  0  0  0  0  0  0
+##    170  0  0  0  0  0  0  0  0
+##    172  0  0  0  0  0  0  0  0
+##    173  0  0  0  0  0  0  0  0
+##    174  0  0  0  0  0  1  0  0
+##    175  0  0  0  0  0  0  0  0
+##    177  0  0  0  0  0  0  0  0
+##    180  0  0  0  0  0  0  0  0
+##    181  0  0  0  0  0  0  0  0
+## 
+## , , gender = male, population = kuopio
+## 
+##       shoesize
+## height 36 37 38 39 41 42 43 44
+##    158  0  0  0  0  0  0  0  0
+##    160  0  0  0  0  0  0  0  0
+##    161  0  0  0  0  0  0  0  0
+##    162  0  0  0  0  0  0  0  0
+##    164  0  0  0  0  0  0  0  0
+##    165  0  0  0  0  0  0  0  0
+##    166  0  0  0  0  0  0  0  0
+##    167  0  0  0  0  0  0  0  0
+##    170  0  0  0  0  0  0  1  0
+##    172  0  0  0  0  0  0  1  0
+##    173  0  0  0  0  0  0  0  0
+##    174  0  0  0  0  0  0  0  0
+##    175  0  0  0  0  0  0  0  0
+##    177  0  0  0  0  0  0  0  0
+##    180  0  0  0  0  0  0  0  0
+##    181  0  0  0  0  0  0  0  1
+## 
+## , , gender = female, population = tampere
+## 
+##       shoesize
+## height 36 37 38 39 41 42 43 44
+##    158  1  0  0  0  0  0  0  0
+##    160  0  0  0  0  0  0  0  0
+##    161  0  0  0  0  0  0  0  0
+##    162  0  1  0  0  0  0  0  0
+##    164  0  0  0  1  0  0  0  0
+##    165  0  0  0  0  0  0  0  0
+##    166  0  0  1  0  0  0  0  0
+##    167  0  0  1  0  0  0  0  0
+##    170  0  0  0  0  0  0  0  0
+##    172  0  0  0  0  0  0  0  0
+##    173  0  0  0  0  0  0  0  0
+##    174  0  0  0  0  0  0  0  0
+##    175  0  0  0  0  0  0  0  0
+##    177  0  0  0  0  0  0  0  0
+##    180  0  0  0  0  0  0  0  0
+##    181  0  0  0  0  0  0  0  0
+## 
+## , , gender = male, population = tampere
+## 
+##       shoesize
+## height 36 37 38 39 41 42 43 44
+##    158  0  0  0  0  0  0  0  0
+##    160  0  0  0  0  0  0  0  0
+##    161  0  0  0  0  0  0  0  0
+##    162  0  0  0  0  0  0  0  0
+##    164  0  0  0  0  0  0  0  0
+##    165  0  0  0  0  0  0  0  0
+##    166  0  0  0  0  0  0  0  0
+##    167  0  0  0  0  0  0  0  0
+##    170  0  0  0  0  0  0  0  0
+##    172  0  0  0  0  0  0  0  0
+##    173  0  0  0  0  1  0  0  0
+##    174  0  0  0  0  0  0  0  0
+##    175  0  0  0  0  0  1  0  0
+##    177  0  0  0  0  0  0  1  0
+##    180  0  0  0  0  0  0  1  0
+##    181  0  0  0  0  0  0  0  1</code></pre>
+<ul>
+<li>Crea nuevas variables a partir de los datos que tenemos. Vamos a crear una variable nueva “sym” que contenga M si el genero es masculino y F si el genero es femenino. Busca en la ayuda información sobre la función ifelse(). Crea una segunda variable “colours” cuyo valor será “Blue” si el estudiante es de kuopio y “Red” si es de otro sitio.</li>
+</ul>
+<pre class="r"><code>sym&lt;-ifelse(students$gender==&quot;male&quot;, &quot;M&quot;, &quot;F&quot;)
+colours&lt;-ifelse(students$population==&quot;kuopio&quot;, &quot;Blue&quot;, &quot;Red&quot;)</code></pre>
+<ul>
+<li>Con los datos anteriores de height y shoesize y las nuevas variables crea un nuevo data.frame que se llame students.new</li>
+</ul>
+<pre class="r"><code>students.new&lt;-cbind(students,sym, colours)</code></pre>
+<ul>
+<li>Comprueba que la clase de student.new es un dataframe</li>
+</ul>
+<pre class="r"><code>str(students.new)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    17 obs. of  6 variables:
+##  $ height    : int  181 160 174 170 172 165 161 167 164 166 ...
+##  $ shoesize  : int  44 38 42 43 43 39 38 38 39 38 ...
+##  $ gender    : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 1 2 2 1 1 1 1 1 ...
+##  $ population: Factor w/ 2 levels &quot;kuopio&quot;,&quot;tampere&quot;: 1 1 1 1 1 1 1 2 2 2 ...
+##  $ sym       : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 2 1 1 2 2 1 1 1 1 1 ...
+##  $ colours   : Factor w/ 2 levels &quot;Blue&quot;,&quot;Red&quot;: 1 1 1 1 1 1 1 2 2 2 ...</code></pre>
+<ul>
+<li>Crea dos subsets a partir del dataset student. Dividelo dependiendo del sexo. Para ello primero comprueba que estudiantes son hombres (male). Pista: busca información sobre la función which. Basándote en esa selección dada por which() toma solo esas filas del dataset student para generar el subset stundent.male</li>
+</ul>
+<pre class="r"><code>students.male = students.new[which(students.new$sym==&quot;M&quot;),]
+students.female = students.new[which(students.new$sym==&quot;F&quot;),]</code></pre>
+<ul>
+<li>Utiliza la function write.table() para guarder el contenido de student.new en un archivo.</li>
+</ul>
+<pre class="r"><code>write.table(students.new, &quot;./datasets/studentsnew.txt&quot;, col.names = TRUE)</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

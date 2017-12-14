@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="joseangeldiazg" />
+
+
+<title>Introducción a R IV</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Programación para Ciencia de Datos con R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="vectores.html">Vectores</a>
+</li>
+<li>
+  <a href="matrices.html">Matrices</a>
+</li>
+<li>
+  <a href="dataframes.html">Dataframes</a>
+</li>
+<li>
+  <a href="strings.html">Strings</a>
+</li>
+<li>
+  <a href="inputoutput.html">Input Output</a>
+</li>
+<li>
+  <a href="functions.html">Functions</a>
+</li>
+<li>
+  <a href="progama.html">Program Structures</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introducción a R IV</h1>
+<h4 class="author"><em>joseangeldiazg</em></h4>
+<h4 class="date"><em>14/12/2017</em></h4>
+
+</div>
+
+
+<div id="estructuras-de-programacion" class="section level2">
+<h2>4.4 Estructuras de programación</h2>
+<ul>
+<li>Crea una función creciente que indique si los elementos de un vector dado son estrictamente crecientes. No se permite ordenar el vector.</li>
+</ul>
+<pre class="r"><code>c&lt;-c(1,2,3,4,5,6,7,8,9)
+c2&lt;-c(1,2,3,4,3,2,1)
+
+creciente&lt;-function(vec)
+{
+  for(i in 2: length(vec))
+    ifelse(vec[i]&lt;vec[i-1],print(&quot;No es estricto creciente&quot;), print(&quot;Es estricto creciente&quot;))
+}</code></pre>
+<ul>
+<li>Crea una función montecarlo que calcule la estimación de la siguiente integral:</li>
+</ul>
+<pre class="r"><code>montecarlo&lt;-function(n)
+{
+  hits=0
+  for(i in 1:n)
+  {
+    r1&lt;-runif(1,0,1)
+    r2&lt;-runif(1,0,1)
+    if(r2&lt;r1^2)
+      hits=hits+1
+  }
+   
+  return(hits/n)
+}
+
+montecarlo(10000)</code></pre>
+<pre><code>## [1] 0.3282</code></pre>
+<ul>
+<li>Crea una lista de 5 vectores numéricos y ordena todos los vectores de la lista.</li>
+</ul>
+<pre class="r"><code>testlist&lt;-list(c(10:1),c(1,5,8,3),c(1,9,10,6))
+testlist</code></pre>
+<pre><code>## [[1]]
+##  [1] 10  9  8  7  6  5  4  3  2  1
+## 
+## [[2]]
+## [1] 1 5 8 3
+## 
+## [[3]]
+## [1]  1  9 10  6</code></pre>
+<pre class="r"><code>lapply(testlist[1:3], sort)</code></pre>
+<pre><code>## [[1]]
+##  [1]  1  2  3  4  5  6  7  8  9 10
+## 
+## [[2]]
+## [1] 1 3 5 8
+## 
+## [[3]]
+## [1]  1  6  9 10</code></pre>
+<ul>
+<li>Calcula el valor mínimo de cada columna de una matriz, pero toma los valores impares como numeros negativos y los pares como positivos.</li>
+</ul>
+<pre class="r"><code>testmatrix&lt;-matrix(1:25, ncol=5, nrow=5)
+
+
+min&lt;-c(0,0,0,0,0)
+max&lt;-c(0,0,0,0,0)
+
+for(i in 1:5)
+{
+  for(j in 1:5)
+  {
+    if(testmatrix[i,j]%%2 == 0)
+    {
+      if(max[j]&lt;testmatrix[i,j])
+        max[j]&lt;-testmatrix[i,j]
+    }
+    else
+    {
+      if(min[j]&gt;-testmatrix[i,j])
+        min[j]&lt;-testmatrix[i,j]
+    }
+  }
+}
+min</code></pre>
+<pre><code>## [1]  5  9 15 19 25</code></pre>
+<pre class="r"><code>max</code></pre>
+<pre><code>## [1]  4 10 14 20 24</code></pre>
+<ul>
+<li>Dada una matriz devuelva una lista con los valores mayores a 7 de cada fila.</li>
+</ul>
+<pre class="r"><code>input&lt;-matrix(1:30, ncol=5, nrow = 5, byrow=TRUE)
+
+input[apply(input, 2, &#39;&gt;&#39;,7 )]</code></pre>
+<pre><code>##  [1] 11 16 21 12 17 22  8 13 18 23  9 14 19 24 10 15 20 25</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

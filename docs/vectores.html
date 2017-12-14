@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="joseangeldiazg" />
+
+<meta name="date" content="2017-12-12" />
+
+<title>Introduccion a R</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Programación para Ciencia de Datos con R</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="vectores.html">Vectores</a>
+</li>
+<li>
+  <a href="matrices.html">Matrices</a>
+</li>
+<li>
+  <a href="dataframes.html">Dataframes</a>
+</li>
+<li>
+  <a href="strings.html">Strings</a>
+</li>
+<li>
+  <a href="inputoutput.html">Input Output</a>
+</li>
+<li>
+  <a href="functions.html">Functions</a>
+</li>
+<li>
+  <a href="progama.html">Program Structures</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Introduccion a R</h1>
+<h4 class="author"><em>joseangeldiazg</em></h4>
+<h4 class="date"><em>12/12/2017</em></h4>
+
+</div>
+
+
+<div id="r-interactivo" class="section level2">
+<h2>1.1 R Interactivo</h2>
+<ul>
+<li>Crea una secuencia de números impares</li>
+</ul>
+<pre class="r"><code>seq(1, 10, by=2)</code></pre>
+<pre><code>## [1] 1 3 5 7 9</code></pre>
+<ul>
+<li>Crea números del 1 al 30</li>
+</ul>
+<pre class="r"><code>1:30</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+## [24] 24 25 26 27 28 29 30</code></pre>
+<ul>
+<li>Busca en la ayuda que hace la función seq().</li>
+</ul>
+<p>Describe que hace. Utilízala para crear números del 1 al 30 con un incremento de 0.5.¿Qué otros parámetros te ofrece la función seq()? Utilízalos en un ejemplo.</p>
+<pre class="r"><code>help(seq)
+
+?&quot;seq&quot;</code></pre>
+<p>La función seq() crea secuencias de números desde un inicio a un final, y en unos incrementos determinados por su argumento by.</p>
+<pre class="r"><code>seq(1,30, by=0.5)</code></pre>
+<pre><code>##  [1]  1.0  1.5  2.0  2.5  3.0  3.5  4.0  4.5  5.0  5.5  6.0  6.5  7.0  7.5
+## [15]  8.0  8.5  9.0  9.5 10.0 10.5 11.0 11.5 12.0 12.5 13.0 13.5 14.0 14.5
+## [29] 15.0 15.5 16.0 16.5 17.0 17.5 18.0 18.5 19.0 19.5 20.0 20.5 21.0 21.5
+## [43] 22.0 22.5 23.0 23.5 24.0 24.5 25.0 25.5 26.0 26.5 27.0 27.5 28.0 28.5
+## [57] 29.0 29.5 30.0</code></pre>
+<p>Parámetros adicionales como length.out, donde especificamos cuantos “cortes” daremos a nuestra secuencia, por ejemplo, de 1 a 30 en 3 “pasos” o “cortes”.</p>
+<pre class="r"><code>seq(1,30, length.out=3)</code></pre>
+<pre><code>## [1]  1.0 15.5 30.0</code></pre>
+<p>Otro parametro es along.with, usado para obtener el tamaño que obtendremos tras alguna generacion pero que se encuentra en desuso ya que la funcion seq_along facilita enormemente las cosas.</p>
+<pre class="r"><code>seq(along.with=1)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<ul>
+<li>Crea una secuencia de números indicando el principio y la longitud de la secuencia de números</li>
+</ul>
+<p>seq(4,length.out=30)</p>
+<p>*Crea letras minúsculas, mayúsculas, nombre de los meses del año y nombre de los meses del año abreviado</p>
+<pre class="r"><code>letters</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot;
+## [18] &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<pre class="r"><code>LETTERS</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;
+## [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
+<pre class="r"><code>month.name</code></pre>
+<pre><code>##  [1] &quot;January&quot;   &quot;February&quot;  &quot;March&quot;     &quot;April&quot;     &quot;May&quot;      
+##  [6] &quot;June&quot;      &quot;July&quot;      &quot;August&quot;    &quot;September&quot; &quot;October&quot;  
+## [11] &quot;November&quot;  &quot;December&quot;</code></pre>
+<pre class="r"><code>month.abb</code></pre>
+<pre><code>##  [1] &quot;Jan&quot; &quot;Feb&quot; &quot;Mar&quot; &quot;Apr&quot; &quot;May&quot; &quot;Jun&quot; &quot;Jul&quot; &quot;Aug&quot; &quot;Sep&quot; &quot;Oct&quot; &quot;Nov&quot;
+## [12] &quot;Dec&quot;</code></pre>
+<ul>
+<li>Investiga la función rep(). Repite un vector del 1 al 8 cinco veces.</li>
+</ul>
+<pre class="r"><code>help(rep)
+
+rep(1:8, times=5)</code></pre>
+<pre><code>##  [1] 1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8 1 2 3
+## [36] 4 5 6 7 8</code></pre>
+<ul>
+<li>Haz lo mismo con las primeras ocho letras del abecedario en mayúsculas</li>
+</ul>
+<pre class="r"><code>rep(LETTERS[1:8], times=5)</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;A&quot;
+## [18] &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;A&quot; &quot;B&quot;
+## [35] &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot;</code></pre>
+</div>
+<div id="vectores" class="section level2">
+<h2>1.2 Vectores</h2>
+<ul>
+<li>Crea los siguientes vectores:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>un vector del 1 al 20</li>
+<li>un vector del 20 al 1</li>
+<li>Utilizando el comando c() crea un vector que tenga el siguiente patrón 1,2,3,4,5…20,19,18,17….1</li>
+</ol>
+<pre class="r"><code>vector&lt;-1:20
+
+vector2&lt;-20:1
+
+vector3&lt;-c(1:20,19:1)</code></pre>
+<ul>
+<li>Genera un vector x que contenga números del 1 al 9. Utilizando el operador ‘:’ . y utilizando otras opciones.</li>
+</ul>
+<pre class="r"><code>x&lt;-1:9
+
+x&lt;-seq(1,9)
+
+x&lt;-c(1:9)</code></pre>
+<ul>
+<li>Genera un vector x que contenga 9 números comprendidos entre 1 y 5</li>
+</ul>
+<pre class="r"><code>x&lt;-seq(1,5,length.out = 9)</code></pre>
+<p>*Busca que hace la función sequence(). ¿Cual es la diferencia con la función seq()</p>
+<pre class="r"><code>help(sequence)</code></pre>
+<p>La función sequence genera y concatena vectores de enteros, es decir por cada elemento de un vector que le pasemos como argumento, generara y concatenrá elementos desde el 1 hasta el valor de la posición x del vector. Por ejemplo la siguiente función generará valores del 1 al 5 y lo concatena con valores del 1 al 8 y del 1 al 9 en un solo vector.</p>
+<pre class="r"><code>sequence(c(5,8,9))</code></pre>
+<pre><code>##  [1] 1 2 3 4 5 1 2 3 4 5 6 7 8 1 2 3 4 5 6 7 8 9</code></pre>
+<p>sequence es menos útil a mi juicio que seq, ya que este último nos permite generar secuencias que aumentan por unidades lógicas, sequence puede concatenar los resultados y seq no.</p>
+<ul>
+<li>Crea un vector numérico utilizando la función c(). Accede al segundo elemento del vector</li>
+</ul>
+<pre class="r"><code>x&lt;-c(1:20)
+x[2]</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>*Crea un vector numérico “z” que contenga del 1 al 10. Cambia el modo del vector a carácter.</p>
+<pre class="r"><code>z&lt;-c(1:10)
+z&lt;-as.character(z)
+typeof(z[1])</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<ul>
+<li>Ahora cambia el vector z a numérico de nuevo</li>
+</ul>
+<pre class="r"><code>z&lt;-as.integer(z)
+typeof(z[3])</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<ul>
+<li>Busca en la ayuda que hace la función scan(). Utilízala para leer un fichero cualquiera y asigna la lectura a un vector “z”.</li>
+</ul>
+<pre class="r"><code>help(scan)
+#Hemos creado el fichero data.txt que contiene 1 2 3 4
+z&lt;-scan(&quot;datasets/data.txt&quot;)
+z[2]</code></pre>
+<pre><code>## [1] 2</code></pre>
+<ul>
+<li>Crea un vector x con 100 elementos, selecciona de ese vector una muestra al azar de tamaño 5. Busca que hace la función sample().</li>
+</ul>
+<pre class="r"><code>x&lt;-c(1:100)
+help(sample)
+sample(x,5)</code></pre>
+<pre><code>## [1] 56 67 30 94 29</code></pre>
+<ul>
+<li>Genera un vector de tipo con 100 números entre el 1 y el 4 de forma random. Para ello mira en la ayuda la función runif(). Obliga a que el vector resultante se ade tipo integer. Ordena el vector por tamaño usando la función sort(). ¿Qué devuelve la función sort?. SI quisieras invertir el orden de los elementos del vector que función utilizarías. Utiliza la función order() sobre x.</li>
+</ul>
+<pre class="r"><code>help(runif)
+
+vector&lt;-sort(as.integer(runif(100,1,4)))
+
+order(vector, decreasing = TRUE)</code></pre>
+<pre><code>##   [1]  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80  81  82
+##  [18]  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99
+##  [35] 100  38  39  40  41  42  43  44  45  46  47  48  49  50  51  52  53
+##  [52]  54  55  56  57  58  59  60  61  62  63  64  65   1   2   3   4   5
+##  [69]   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22
+##  [86]  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37</code></pre>
+<pre class="r"><code>vector2&lt;-c(vector[order(vector, decreasing = TRUE)])</code></pre>
+<ul>
+<li>¿Cuál es la diferencia con la función sort()?</li>
+</ul>
+<p>La diferencia con la funcion sort es que order nos devuelve las posiciones donde se debería de permutar para obtener el orden deseado.</p>
+<ul>
+<li>Crea un vector x que contenga los números ordenados del 1 al 10 de forma consecutiva. Investiga la función rep(). Una vez comprobado que funciona, elimina las entradas repetidas del vector, para ello consulta la función unique().</li>
+</ul>
+<pre class="r"><code>x&lt;-c(1:10)
+help(rep)
+x&lt;-rep(x,4)
+x&lt;-unique(x)</code></pre>
+<ul>
+<li>Crea un vector cualquiera. Devuelve de ese vector una muestra cinco números seleccionada al azar. Usa la función sample(), prueba a determinar los valores que quieres extraer con y sin remplazo.</li>
+</ul>
+<pre class="r"><code>x&lt;-c(1:40)
+
+help(sample)
+
+sample(x,30)</code></pre>
+<pre><code>##  [1] 19 37  6 17  9 35 25  7  5 12 13 29 33  2 30 22 26 27 23 21  8 11 15
+## [24] 38 36 20  1 10 28 14</code></pre>
+<pre class="r"><code>#Si queremos que salgan repetidos es decir, con reemplazo
+sample(x, 30, replace = TRUE)</code></pre>
+<pre><code>##  [1] 10 31 35 35 12 23  2 26  9 32 20 22 27 16 33 18 21 34 17 30 31 39 28
+## [24]  8 38  1 40 29 37 16</code></pre>
+<pre class="r"><code>#Si queremos que no salgan repetidos es decir, sin reemplazo
+sample(x, 30, replace = FALSE)</code></pre>
+<pre><code>##  [1] 16 35 38 40 20 27 37 14 11 26 33  8 15  7  3 36  9  1  5 18 29 32  2
+## [24] 23 28 34  4 25 17 30</code></pre>
+<ul>
+<li>Comprueba que objetos tienes ahora en tu espacio de trabajo. Prueba con la función ls() y la función objects()</li>
+</ul>
+<pre class="r"><code>help(ls)
+ls()</code></pre>
+<pre><code>##  [1] &quot;A&quot;                &quot;all_wars_matrix&quot;  &quot;año&quot;             
+##  [4] &quot;array_datos&quot;      &quot;b1&quot;               &quot;b2&quot;              
+##  [7] &quot;beavers&quot;          &quot;c&quot;                &quot;c2&quot;              
+## [10] &quot;cambio&quot;           &quot;cinco&quot;            &quot;co_2ordered&quot;     
+## [13] &quot;colours&quot;          &quot;consonantes&quot;      &quot;creciente&quot;       
+## [16] &quot;dates&quot;            &quot;dia&quot;              &quot;dos&quot;             
+## [19] &quot;empire_strikes&quot;   &quot;f&quot;                &quot;fechas&quot;          
+## [22] &quot;frase&quot;            &quot;hits&quot;             &quot;i&quot;               
+## [25] &quot;impares&quot;          &quot;inicial&quot;          &quot;input&quot;           
+## [28] &quot;irisfactor&quot;       &quot;j&quot;                &quot;listFechas&quot;      
+## [31] &quot;logicVector&quot;      &quot;m&quot;                &quot;m1&quot;              
+## [34] &quot;M1&quot;               &quot;m2&quot;               &quot;M2&quot;              
+## [37] &quot;marray&quot;           &quot;max&quot;              &quot;mayorquesiete&quot;   
+## [40] &quot;mes&quot;              &quot;min&quot;              &quot;minorMurder&quot;     
+## [43] &quot;montecarlo&quot;       &quot;mtcars&quot;           &quot;my_list&quot;         
+## [46] &quot;my_list2&quot;         &quot;new_hope&quot;         &quot;nombre&quot;          
+## [49] &quot;non_us_all&quot;       &quot;non_us_some&quot;      &quot;numero&quot;          
+## [52] &quot;numeros&quot;          &quot;partir&quot;           &quot;pos&quot;             
+## [55] &quot;responses&quot;        &quot;return_jedi&quot;      &quot;s&quot;               
+## [58] &quot;salida&quot;           &quot;sinrepetidos&quot;     &quot;splitConsonantes&quot;
+## [61] &quot;splitFrase&quot;       &quot;splitVocales&quot;     &quot;star_wars_matrix&quot;
+## [64] &quot;string&quot;           &quot;strings&quot;          &quot;students&quot;        
+## [67] &quot;students.female&quot;  &quot;students.male&quot;    &quot;students.new&quot;    
+## [70] &quot;subb&quot;             &quot;sym&quot;              &quot;testlist&quot;        
+## [73] &quot;testmatrix&quot;       &quot;tres&quot;             &quot;unir&quot;            
+## [76] &quot;v&quot;                &quot;v1&quot;               &quot;v2&quot;              
+## [79] &quot;vector&quot;           &quot;vector2&quot;          &quot;vector3&quot;         
+## [82] &quot;vocales&quot;          &quot;vyc&quot;              &quot;women&quot;           
+## [85] &quot;worldwide_vector&quot; &quot;x&quot;                &quot;x1&quot;              
+## [88] &quot;x2&quot;               &quot;xmatrix&quot;          &quot;y&quot;               
+## [91] &quot;ymatrix&quot;          &quot;z&quot;</code></pre>
+<pre class="r"><code>help(objects)
+objects()</code></pre>
+<pre><code>##  [1] &quot;A&quot;                &quot;all_wars_matrix&quot;  &quot;año&quot;             
+##  [4] &quot;array_datos&quot;      &quot;b1&quot;               &quot;b2&quot;              
+##  [7] &quot;beavers&quot;          &quot;c&quot;                &quot;c2&quot;              
+## [10] &quot;cambio&quot;           &quot;cinco&quot;            &quot;co_2ordered&quot;     
+## [13] &quot;colours&quot;          &quot;consonantes&quot;      &quot;creciente&quot;       
+## [16] &quot;dates&quot;            &quot;dia&quot;              &quot;dos&quot;             
+## [19] &quot;empire_strikes&quot;   &quot;f&quot;                &quot;fechas&quot;          
+## [22] &quot;frase&quot;            &quot;hits&quot;             &quot;i&quot;               
+## [25] &quot;impares&quot;          &quot;inicial&quot;          &quot;input&quot;           
+## [28] &quot;irisfactor&quot;       &quot;j&quot;                &quot;listFechas&quot;      
+## [31] &quot;logicVector&quot;      &quot;m&quot;                &quot;m1&quot;              
+## [34] &quot;M1&quot;               &quot;m2&quot;               &quot;M2&quot;              
+## [37] &quot;marray&quot;           &quot;max&quot;              &quot;mayorquesiete&quot;   
+## [40] &quot;mes&quot;              &quot;min&quot;              &quot;minorMurder&quot;     
+## [43] &quot;montecarlo&quot;       &quot;mtcars&quot;           &quot;my_list&quot;         
+## [46] &quot;my_list2&quot;         &quot;new_hope&quot;         &quot;nombre&quot;          
+## [49] &quot;non_us_all&quot;       &quot;non_us_some&quot;      &quot;numero&quot;          
+## [52] &quot;numeros&quot;          &quot;partir&quot;           &quot;pos&quot;             
+## [55] &quot;responses&quot;        &quot;return_jedi&quot;      &quot;s&quot;               
+## [58] &quot;salida&quot;           &quot;sinrepetidos&quot;     &quot;splitConsonantes&quot;
+## [61] &quot;splitFrase&quot;       &quot;splitVocales&quot;     &quot;star_wars_matrix&quot;
+## [64] &quot;string&quot;           &quot;strings&quot;          &quot;students&quot;        
+## [67] &quot;students.female&quot;  &quot;students.male&quot;    &quot;students.new&quot;    
+## [70] &quot;subb&quot;             &quot;sym&quot;              &quot;testlist&quot;        
+## [73] &quot;testmatrix&quot;       &quot;tres&quot;             &quot;unir&quot;            
+## [76] &quot;v&quot;                &quot;v1&quot;               &quot;v2&quot;              
+## [79] &quot;vector&quot;           &quot;vector2&quot;          &quot;vector3&quot;         
+## [82] &quot;vocales&quot;          &quot;vyc&quot;              &quot;women&quot;           
+## [85] &quot;worldwide_vector&quot; &quot;x&quot;                &quot;x1&quot;              
+## [88] &quot;x2&quot;               &quot;xmatrix&quot;          &quot;y&quot;               
+## [91] &quot;ymatrix&quot;          &quot;z&quot;</code></pre>
+</div>
+<div id="indexado-de-vectores" class="section level2">
+<h2>1.3 Indexado de Vectores</h2>
+<ul>
+<li>Ejecuta los siguientes comandos y comprueba su resultado</li>
+</ul>
+<pre class="r"><code>x &lt;- 1:10
+names(x) &lt;- letters[x]
+
+x[1:3]</code></pre>
+<pre><code>## a b c 
+## 1 2 3</code></pre>
+<pre class="r"><code>x[c(1,10)]</code></pre>
+<pre><code>##  a  j 
+##  1 10</code></pre>
+<pre class="r"><code>x[c(-1,-2)]</code></pre>
+<pre><code>##  c  d  e  f  g  h  i  j 
+##  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>x[ x &gt; 5]</code></pre>
+<pre><code>##  f  g  h  i  j 
+##  6  7  8  9 10</code></pre>
+<pre class="r"><code>x[c(&quot;a&quot;,&quot;d&quot;)]</code></pre>
+<pre><code>## a d 
+## 1 4</code></pre>
+<pre class="r"><code>x[]</code></pre>
+<pre><code>##  a  b  c  d  e  f  g  h  i  j 
+##  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>x &lt;- 1:10; 
+y &lt;- c(x[1:5],99,x[6:10]);
+y</code></pre>
+<pre><code>##  [1]  1  2  3  4  5 99  6  7  8  9 10</code></pre>
+<ul>
+<li>Crea un vector con números del 1 al 100 y extrae los valores del 2 al 23.</li>
+</ul>
+<pre class="r"><code>vector&lt;-1:100
+
+vector[2:23]</code></pre>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23</code></pre>
+<ul>
+<li>Del mismo vector x extrae ahora todos los valores menos del 2:23</li>
+</ul>
+<pre class="r"><code>vector[c(1,24:100)]</code></pre>
+<pre><code>##  [1]   1  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39
+## [18]  40  41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56
+## [35]  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73
+## [52]  74  75  76  77  78  79  80  81  82  83  84  85  86  87  88  89  90
+## [69]  91  92  93  94  95  96  97  98  99 100</code></pre>
+<ul>
+<li>Cambia el número en la posición 5 por el valor 99</li>
+</ul>
+<pre class="r"><code>vector[5]&lt;-99
+vector[5]</code></pre>
+<pre><code>## [1] 99</code></pre>
+<ul>
+<li>Crea un vector lógico del vector letters, (e.g. comprobando si existe c en el vector letters).</li>
+</ul>
+<pre class="r"><code>logicVector&lt;-letters==&quot;c&quot;</code></pre>
+<ul>
+<li>¿Qué devuelve el siguiente comando? which(rep(letters,2)==“c”)</li>
+</ul>
+<pre class="r"><code>which(rep(letters,2)==&quot;c&quot;) </code></pre>
+<pre><code>## [1]  3 29</code></pre>
+<p>Nos devuelve las posiciones en las que encuentra la letra c. Son dos ya que repite el vector letters dos veces.</p>
+<ul>
+<li>¿Qué devuelve el siguiente comando? match(c(“c”,“g”), letters)</li>
+</ul>
+<pre class="r"><code>match(c(&quot;c&quot;,&quot;g&quot;), letters) </code></pre>
+<pre><code>## [1] 3 7</code></pre>
+<p>Nos devuelve las posiciones en las que encuentra las letras que le pasamos en el primer argumento.</p>
+<ul>
+<li>Crea un vector x de elementos -5 -1, 0, 1, . . . , 6. Escribe un código en R del tipo x[ ‘something’ ] , para extraer:</li>
+</ul>
+<pre class="r"><code>x&lt;-(-5:6)
+
+#elementos de x menores que  0
+
+x[x&lt;0]</code></pre>
+<pre><code>## [1] -5 -4 -3 -2 -1</code></pre>
+<pre class="r"><code>#elementos de x menores o igual que 0
+
+x[x&lt;=0]</code></pre>
+<pre><code>## [1] -5 -4 -3 -2 -1  0</code></pre>
+<pre class="r"><code>#elementos of x mayor o igual que 3
+
+x[x&gt;=3]</code></pre>
+<pre><code>## [1] 3 4 5 6</code></pre>
+<pre class="r"><code>#elementos de x menor que 0 o mayor que  4
+
+x[x&lt;0|x&gt;4]</code></pre>
+<pre><code>## [1] -5 -4 -3 -2 -1  5  6</code></pre>
+<pre class="r"><code>#elementos de x mayor que 0 y menor que 4
+
+x[x&gt;0&amp;x&lt;4]</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>#elementos de x distintos de 0
+
+x[x!=0]</code></pre>
+<pre><code>##  [1] -5 -4 -3 -2 -1  1  2  3  4  5  6</code></pre>
+<ul>
+<li>El código is.na se usa para identificar valores ausentes (NA). Crea el vector x&lt;- c(1,2,NA) y averigua que pasa cuando escribes is.na(x). Prueba con x[ x!=NA ¿obtienes con este comando los missing values de x?. ¿cuál es tu explicación?</li>
+</ul>
+<pre class="r"><code>x&lt;- c(1,2,NA)
+is.na(x)</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE</code></pre>
+<pre class="r"><code>x[x!=NA]</code></pre>
+<pre><code>## [1] NA NA NA</code></pre>
+<p>De este modo no se obtienen los valores perdidos si no que nos ofrece todos los valores como si fueran na. Creo que se debe a que los tipos de un vector son los mismos y por lo tanto al crear un vector de enteros el NA está cambiando su tipo lógico por defecto a entero y la evaluación del mismo no es correcta.</p>
+</div>
+<div id="busqueda-de-valores-identicos-y-distintos-en-vectores" class="section level2">
+<h2>1.4 Búsqueda de valores idénticos y distintos en Vectores</h2>
+<ul>
+<li>Haz la intersección de dos vectores month.name[1:4] y month.name[3:7] usando la función intersect().</li>
+</ul>
+<pre class="r"><code>intersect(month.name[1:4],month.name[3:7])</code></pre>
+<pre><code>## [1] &quot;March&quot; &quot;April&quot;</code></pre>
+<ul>
+<li>Recupera los valores idénticos entre dos vectores usando %in%. Esta función devuelve un vector lógico de los elementos idénticos. Utiliza esa función para poder extraer ese subset del vector original.</li>
+</ul>
+<pre class="r"><code>v1&lt;-c(1:6)
+v2&lt;-c(3:9)
+v1[v1 %in% v2]</code></pre>
+<pre><code>## [1] 3 4 5 6</code></pre>
+<ul>
+<li>Si x=month.name[1:4] e y= month.name[3:7] recupera los valores únicos en el primer vector. Para ello investiga la función setdiff().¿Puedes usarlo con caracteres?. Busca una alternativa.</li>
+</ul>
+<pre class="r"><code>x=month.name[1:4]
+y=month.name[3:7]
+
+class(x)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>class(y)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>setdiff(x,y)</code></pre>
+<pre><code>## [1] &quot;January&quot;  &quot;February&quot;</code></pre>
+<p>Si que puede usarse con tipos de clase caracteres, de hecho tendremos problemas con setdiff si pasamos argumentos de distintos tipos, pero si son iguales como es el caso no tendremos problema alguno.</p>
+<ul>
+<li>Une dos vectores sin duplicar las entradas repetidas. Investiga la función unión().</li>
+</ul>
+<pre class="r"><code>help(union)
+x=month.name[1:4]
+y=month.name[1:7]
+union(x,y)</code></pre>
+<pre><code>## [1] &quot;January&quot;  &quot;February&quot; &quot;March&quot;    &quot;April&quot;    &quot;May&quot;      &quot;June&quot;    
+## [7] &quot;July&quot;</code></pre>
+<ul>
+<li>Recupera las entradas duplicadas que existen entre el vector x y el vector y</li>
+</ul>
+<pre class="r"><code>intersect(x, y)</code></pre>
+<pre><code>## [1] &quot;January&quot;  &quot;February&quot; &quot;March&quot;    &quot;April&quot;</code></pre>
+</div>
+<div id="filtrado-de-vectores-subset-which-ifelse" class="section level2">
+<h2>1.5 Filtrado de Vectores, subset(), which(), ifelse()</h2>
+<p>R permite extraer elementos de un vector que satisfacen determinadas condiciones. Es una de las operaciones más comunes.</p>
+<ul>
+<li>Dado el vector z obtén los valores donde el cuadrado de z sea mayor que 8 sin utilizar ninguna función, con filtrado normal</li>
+</ul>
+<pre class="r"><code>z&lt;-c(5,2,-3,8)
+
+z[z^2&gt;8]</code></pre>
+<pre><code>## [1]  5 -3  8</code></pre>
+<p>R permite extraer elementos de un vector que satisfacen determinadas condiciones usando la función subset(), la diferencia entre esta función y el filtrado normal es como funciona con NA, subset() los elimina automáticamente del cálculo.</p>
+<ul>
+<li>Para el vector x &lt;- c(6,1:3,NA,12) calcula los elementos mayores que 5 usando primero el filtrado normal y luego la función subset()</li>
+</ul>
+<pre class="r"><code>x &lt;- c(6,1:3,NA,12)
+x[x&gt;5]</code></pre>
+<pre><code>## [1]  6 NA 12</code></pre>
+<pre class="r"><code>subset(x, x&gt;5)</code></pre>
+<pre><code>## [1]  6 12</code></pre>
+<p>R permite extraer encontrar las posiciones en las que se encuentran los elementos que cumplen una determinada condición con which().</p>
+<ul>
+<li>Utiliza esta función para encontrar dado el vector z, las posiciones donde el cuadrado de z sea mayor que 8</li>
+</ul>
+<pre class="r"><code>z &lt;- c(5,2,-3,8)
+help(which)
+which(z^2&gt;8)</code></pre>
+<pre><code>## [1] 1 3 4</code></pre>
+<ul>
+<li>En R aparte de encontrarse los típicos bucles if-then-else existe la función ifelse(). Para un vector x devuelve 5 para aquellos números que sean pares (módulo igual a 0) y 12 para los números impares.</li>
+</ul>
+<pre class="r"><code>vector&lt;-c(1:30)
+help(ifelse)
+ifelse(vector%%2==0, print(&quot;5&quot;), print(&quot;12&quot;))</code></pre>
+<pre><code>## [1] &quot;5&quot;
+## [1] &quot;12&quot;</code></pre>
+<pre><code>##  [1] &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot; 
+## [15] &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot;  &quot;12&quot; &quot;5&quot; 
+## [29] &quot;12&quot; &quot;5&quot;</code></pre>
+<ul>
+<li>Práctica ahora para el vector x &lt;- c(5,2,9,12)devuelve el doble de x si el valor de x es mayor que 6 y el triple si no lo es.</li>
+</ul>
+<pre class="r"><code>x &lt;- c(5,2,9,12)
+ifelse(x&gt;6, x*2, x*3)</code></pre>
+<pre><code>## [1] 15  6 18 24</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
