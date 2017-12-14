@@ -1,6 +1,6 @@
 name: "Programación para Ciencia de Datos con R"
 output_dir: "docs"
-exclude: ["introduccion-programacion-data-science.Rproj","datsets","Python","README.md", "LICENSE", ".*"]
+exclude: ["introduccion-programacion-data-science.Rproj","datasets","Python","README.md", "LICENSE"]
 navbar:
   title: "Programación para Ciencia de Datos con R"
   left:
@@ -19,4 +19,4 @@ navbar:
     - text: "Functions"
       href: functions.html
     - text: "Program Structures"
-      href: progama.html
+      href: progam.html
