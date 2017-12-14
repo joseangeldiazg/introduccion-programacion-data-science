@@ -1,0 +1,95 @@
+---
+title: "Introducción a R IV"
+author: "joseangeldiazg"
+date: "14/12/2017"
+output: html_document
+---
+
+
+
+## 4.4 Estructuras de programación
+
+
+* Crea una función creciente que indique si los elementos de un vector dado son estrictamente crecientes. No se permite ordenar el vector.
+
+```{r}
+c<-c(1,2,3,4,5,6,7,8,9)
+c2<-c(1,2,3,4,3,2,1)
+
+creciente<-function(vec)
+{
+  for(i in 2: length(vec))
+    ifelse(vec[i]<vec[i-1],print("No es estricto creciente"), print("Es estricto creciente"))
+}
+
+```
+
+
+* Crea una función montecarlo que calcule la estimación de la siguiente integral:
+
+
+```{r}
+montecarlo<-function(n)
+{
+  hits=0
+  for(i in 1:n)
+  {
+    r1<-runif(1,0,1)
+    r2<-runif(1,0,1)
+    if(r2<r1^2)
+      hits=hits+1
+  }
+   
+  return(hits/n)
+}
+
+montecarlo(10000)
+```
+
+* Crea una lista de 5 vectores numéricos y ordena todos los vectores de la lista.
+
+```{r}
+
+testlist<-list(c(10:1),c(1,5,8,3),c(1,9,10,6))
+testlist
+lapply(testlist[1:3], sort)
+```
+
+
+* Calcula el valor mínimo de cada columna de una matriz, pero toma los valores impares como numeros negativos y los pares como positivos.
+
+```{r}
+testmatrix<-matrix(1:25, ncol=5, nrow=5)
+
+
+min<-c(0,0,0,0,0)
+max<-c(0,0,0,0,0)
+
+for(i in 1:5)
+{
+  for(j in 1:5)
+  {
+    if(testmatrix[i,j]%%2 == 0)
+    {
+      if(max[j]<testmatrix[i,j])
+        max[j]<-testmatrix[i,j]
+    }
+    else
+    {
+      if(min[j]>-testmatrix[i,j])
+        min[j]<-testmatrix[i,j]
+    }
+  }
+}
+min
+max
+```
+
+
+* Dada una matriz devuelva una lista con los valores mayores a 7 de cada fila.
+
+```{r}
+input<-matrix(1:30, ncol=5, nrow = 5, byrow=TRUE)
+
+input[apply(input, 2, '>',7 )]
+```
